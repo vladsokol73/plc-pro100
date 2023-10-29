@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+    outline: none;
+    border: none;
+}
+
+body {
+    color: white;
+    background: #081b29;
+}
+
+.header {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem 9%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    font-size: 20px;
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    position: relative;
+}
+
+.logo a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background: #081b29;
+    animation: slideRight 1s ease forwards;
+    animation-delay: 1s;
+}
+
+@keyframes slideRight {
+    100% {
+        width: 0;
+    }
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-block;
+    margin-left: 4rem;
+    font-size: 16px;
+    transition: .5s;
+    position: relative;
+}
+
+.navbar a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background: #081b29;
+    animation: slideRight 1s ease forwards;
+    animation-delay: 1.6s;
+    z-index: 2;
+}
+
+.navbar a:hover {
+    color: #e805b9;
+}
+
+.button-logout {
+    float: right;;
+}
+
+.home {
+    background-image: url("/storage/images/logo.jpg");
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    height: 85vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 70px 10% 0;
+}
+
+.home .home-detail {
+    max-width: 600px;
+}
+
+.home-detail h3 {
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    line-height: 1.2;
+    position: relative;
+}
+
+.home-detail h3:nth-child(2) {
+    font-size: 23px;
+    color: #e805b9;
+    font-weight: 800;
+    margin-bottom: 30px;
+}
+
+.home-detail h3::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background: #081b29;
+    animation: slideRight 1s ease forwards;
+    animation-delay: 1s;
+}
+
+.home-detail p {
+    font-size: 16px;
+    position: relative;
+    margin: 20px 0 40px;
+}
+
+p::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background: #081b29;
+    animation: slideRight 1s ease forwards;
+    animation-delay: 1s;
+}
+
+.btn-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 30px;
+}
+
+.btn-box a {
+    position: relative;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.btn-box a:hover {
+    color: #e805b9;
+}
+
+.btn-box a::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 8px;
+    content: "";
+    height: 100%;
+    width: 0;
+    background: #081b29;
+    z-index: -1;
+    overflow: hidden;
+    transition: .5s;
+}
+
+.btn-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background: #081b29;
+    animation: slideRight 1s ease forwards;
+    animation-delay: 1s;
+    z-index: 2;
+}
+
+.btn-box a:hover::before {
+    width: 100%;
+}

@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+    outline: none;
+    border: none;
+}
+
+body {
+    color: white;
+    background: #081b29;
+}
+
+.header {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem 9%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+}
+
+.container input {
+    background: #2a2f3b;
+    padding: 16px;
+    width: 85%;
+    border-radius: 8px;
+    outline:none;
+    border: 2px solid #2f2f3b;
+    font-size: 16px;
+    color: white;
+}
+
+.container button {
+    background: #2a2f3b;
+    border-radius: 8px;
+    outline:none;
+    border: 2px solid #2f2f3b;
+    font-size: 16px;
+    color: white;
+}
+
+.logo a {
+    font-size: 20px;
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    position: relative;
+}
+
+.logo a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background: #081b29;
+    animation: slideRight 1s ease forwards;
+    animation-delay: 1s;
+}
+
+@keyframes slideRight {
+    100% {
+        width: 0;
+    }
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-block;
+    margin-left: 4rem;
+    font-size: 16px;
+    transition: .5s;
+    position: relative;
+}
+
+.navbar a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background: #081b29;
+    animation: slideRight 1s ease forwards;
+    animation-delay: 1.6s;
+    z-index: 2;
+}
+
+.navbar a:hover {
+    color: #e805b9;
+}
+
+.button-logout {
+    float: right;;
+}
+
+.cards {
+    display: grid;
+    /* Автоматически заполняем на всю ширину grid-контейнера */
+    grid-template-columns: repeat(auto-fill, 225px);
+    width: 100%;
+    max-width: 1000px; /* Ширина grid-контейнера */
+    justify-content: center;
+    justify-items: center; /* Размещаем карточку по центру */
+    column-gap: 30px; /* Отступ между колонками */
+    row-gap: 40px; /* Отступ между рядами */
+    margin: 0 auto;
+}
+
+
+img {
+    width: 100%;
+    display: block;
+}
+
+.section-card {
+    padding: 0 30px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+.section-card .card {
+    margin: 20px auto;
+    max-width: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-image: linear-gradient(
+        140deg,
+        #132936,
+        #132936 20%,
+        #2196f3 20.5%,
+        #2196f3
+    );
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+}
+
+.section-card .card .infos {
+    padding: 10px 10px;
+    text-align: center;
+}
+
+.btn-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 30px;
+}
+
+.btn-box a {
+    position: relative;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.btn-box a:hover {
+    color: #e805b9;
+}
+
+.btn-box a::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: 8px;
+    content: "";
+    height: 100%;
+    width: 0;
+    background: #081b29;
+    z-index: -1;
+    overflow: hidden;
+    transition: .5s;
+}
+
+.btn-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background: #081b29;
+    animation: slideRight 1s ease forwards;
+    animation-delay: 1s;
+    z-index: 2;
+}
+
+.btn-box a:hover::before {
+    width: 100%;
+}
