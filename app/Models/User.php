@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
+//use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Contracts\Database\Eloquent\Builder;
+//use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable //implements MustVerifyEmail
 {
     use HasApiTokens, Notifiable, HasFactory;
 
@@ -23,7 +25,6 @@ class User extends Authenticatable
         'email',
         "name",
         'password',
-        'avatar',
         "role",
         'on_home_page',
         'sorting'
@@ -37,6 +38,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
     ];
 
     public function products(): HasMany
@@ -64,11 +69,14 @@ class User extends Authenticatable
         return $this->hasMany(Order::class);
     }
 
-    /*public function avatar(): Attribute
-    {
-        return Attribute::make(
-            get: fn() => 'https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=' . $this->name
-        );
-    }*/
-
+//    public function sendPasswordResetNotification($token) {
+//        $notification = new ResetPassword($token);
+//        $notification->createUrlUsing(function ($user, $token) {
+//            return url(route('user.password.reset', [
+//                'token' => $token,
+//                'email' => $user->email
+//            ]));
+//        });
+//        $this->notify($notification);
+//    }
 }

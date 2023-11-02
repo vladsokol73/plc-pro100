@@ -4,48 +4,25 @@
 
 @section("content")
     <body>
+    <section>
+        <ul class="step">
+            <li><a href="{{ route('home') }}">Главная</a></li>
+            <li><a href="{{ route('catalog') }}">Каталог</a></li>
 
-    <ul class="step">
-        <li><a href="{{ route('home') }}">Главная</a></li>
-        <li><a href="{{ route('catalog') }}">Каталог</a></li>
+            @if($category->exists)
+                <li>
+                    <span>{{ $category->title }}</span>
+                </li>
+            @endif
+        </ul>
+    </section>
 
-        @if($category->exists)
-            <li>
-                <span>{{ $category->title }}</span>
-            </li>
-        @endif
-    </ul>
-    <section class="dropdown">
-        <div class="dropdown-category" x-data="{ open: false }">
-            <button @click="open = true"><h3>Категории</h3></button>
-
-            <ul
-                x-show="open"
-                @click.away="open = false"
-            >
-                Содержимое дропдаун
-            </ul>
+    <section>
+        <div class="category">
+        <h3>Категории</h3>
+        <div>
+            @each('components.category', $categories, 'item')
         </div>
-
-        <div x-data="{ open: false }">
-            <button @click="open = true"><h3 class="mb-4">Бренды</h3></button>
-
-            <ul
-                x-show="open"
-                @click.away="open = false"
-            >
-                @foreach($brands as $brand)
-                    <input name="filters[brands][{{ $brand->id }}]"
-                           value="{{ $brand->id }}"
-                           type="checkbox"
-                           @checked(request('filters.brands.'.$brand->id))
-                           id="filters-brands-{{ $brand->id }}">
-
-                    <label for="filters-brands-{{ $brand->id }}" class="form-checkbox-label">
-                        {{ $brand->title }}
-                    </label>
-                @endforeach
-            </ul>
         </div>
     </section>
 
@@ -72,9 +49,22 @@
                        type="number"
                        class="price-to"
                        placeholder="До">
+                <div>
+                    <h3>Бренды</h3>
+                    @foreach($brands as $brand)
+                        <div>
+                            <input name="filters[brands][{{ $brand->id }}]"
+                                   value="{{ $brand->id }}"
+                                   type="checkbox"
+                                   @checked(request('filters.brands.'.$brand->id))
+                                   id="filters-brands-{{ $brand->id }}">
 
-                <!-- Filter item -->
-
+                            <label for="filters-brands-{{ $brand->id }}" class="form-checkbox-label">
+                                {{ $brand->title }}
+                            </label>
+                        </div>
+                    @endforeach
+                </div>
 
                 <div>
                     <button type="submit">Поиск</button>
@@ -86,11 +76,10 @@
                 @endif
             </form>
         </aside>
-        <div>
+        <div class="total">
             Найдено: {{ $products->total() }} товаров
-        </div>
 
-        <div x-data="{}">
+        <div class="sort" x-data="{}">
             <span>Сортировать по</span>
 
             <form x-ref="sortForm" action="{{ route('catalog', $category) }}">
@@ -106,17 +95,18 @@
                 </select>
             </form>
         </div>
+        </div>
 
         <!-- Product list -->
-        <div class="container">
-            <div class="cards">
+        <div class="container products__container">
+        <ul class="imdiz-products imdiz-products_row">
+            <li class="product-wrapper">
                 @each('components.product', $products, 'item')
-            </div>
-
-
-            <div class="paginator">
-                {{ $products->withQueryString()->links('vendor.pagination.bootstrap-4')}}
-            </div>
+            </li>
+        </ul>
+        </div>
+        <div class="paginator">
+            {{ $products->withQueryString()->links('vendor.pagination.bootstrap-4')}}
         </div>
     </section>
     </body>

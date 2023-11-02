@@ -12,12 +12,12 @@ class BasketController extends Controller
     //Страница корзины
     public function index(Request $request) {
         $basket_id = $request->cookie('basket_id');
-        if (!empty($basket_id)) {
+        if (empty($basket_id)) {
+            $basket = Basket::query()->create();
+            $basket_id = $basket->id;
             $products = Basket::query()->findOrFail($basket_id)->products;
             return view('basket.index', compact('products'));
         } else {
-            $basket = Basket::query()->create();
-            $basket_id = $basket->id;
             $products = Basket::query()->findOrFail($basket_id)->products;
             return view('basket.index', compact('products'));
         }
@@ -36,8 +36,8 @@ class BasketController extends Controller
             $basket = Basket::query()->create();
             $basket_id = $basket->id;
 
+        // корзина уже существует, получаем объект корзины
         } else {
-            // корзина уже существует, получаем объект корзины
             $basket = Basket::query()->findOrFail($basket_id);
         }
 

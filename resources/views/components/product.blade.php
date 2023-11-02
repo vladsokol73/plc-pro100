@@ -1,67 +1,49 @@
-<section class="section-card">
-    <div class="card">
-        @auth()
-            @if(auth()->user()->role != 'продавец')
-        <div class="img-container">
-            <a href="{{ route('product', $item) }}" class="card__image">
+<section>
+<li class="imdiz-product">
+    <div class="imdiz-product__inner">
+        <div class="imdiz-product__image-wrap">
+            <a href="{{ route('product', $item) }}" class="imdiz-product__img-link">
                 <img src="{{$item->makeThumbnail('345x320')}}" alt="{{ $item->slug }}">
             </a>
         </div>
-            @endif
-        @elseguest()
-            <div class="img-container">
-                <a href="{{ route('product', $item) }}" class="card__image">
-                    <img src="{{$item->makeThumbnail('345x320')}}" alt="{{ $item->slug }}">
-                </a>
-            </div>
-        @endguest
 
-        <div class="infos">
-            <div class="name">
-                <h3 class="name">
-                    {{ $item->title }}
-                </h3>
-{{--                <h1 class="article">{{ $item->article }}</h1>--}}
-{{--                <h1 class="brand">{{ $item->brand }}</h1>--}}
-                <h2 class="price">{{ $item->price }}<small> ₽</small></h2>
-            </div>
+        <div class="imdiz-product__info">
+            <a href="{{ route('product', $item) }}" class="imdiz-product__name">{{ $item->title }}</a>
+            <p class="imdiz-product__price">
+                <span class="imdiz-product__cost">{{ $item->price }}</span>
+                <span class="imdiz-product__currency">&#8381;</span>
+            </p>
+                                <p class="imgiz-product__article"></p>
         </div>
 
-        <button class="btn btn-buy">В корзину</button>
-
-
-{{--        @auth()--}}
-{{--            <form action="{{ route('basketAdd', ['id' => $item->id]) }}"--}}
-{{--                  method="post" class="form-inline">--}}
-{{--                @csrf--}}
-{{--                <button type="submit" class="card__add">--}}
-{{--                    <ion-icon name="cart-outline"></ion-icon>--}}
-{{--                </button>--}}
-{{--            </form>--}}
-{{--        @elseguest()--}}
-{{--            <form action="{{ route('login') }}"--}}
-{{--                  method="get" class="form-inline">--}}
-{{--                @csrf--}}
-{{--                <button type="submit" class="card__add">--}}
-{{--                    <ion-icon name="cart-outline"></ion-icon>--}}
-{{--                </button>--}}
-{{--            </form>--}}
-{{--        @endauth--}}
-{{--    </div>--}}
-</div>
-@auth()
-    @if(auth()->user()->role == 'продавец')
-        <form method="post" action="{{ route('removeProduct', $item->id) }}">
+        <form method="post" action="{{ route('basketAdd', ['id' => $item->id]) }}" class="imdiz-product__buy-form">
             @csrf
-            <button type="submit" class="btn btn-success">Удалить товар</button>
+            @auth()
+                @if(auth()->user()->role != 'продавец')
+                    <input type="hidden">
+                    <button type="submit" class="imdiz-product__submit">В КОРЗИНУ</button>
+                @endif
+            @elseguest()
+                <input type="hidden">
+                <button type="submit" class="imdiz-product__submit">В КОРЗИНУ</button>
+            @endguest
         </form>
 
-        <button
-            onclick="window.location.href = '{{ route('editProduct', $item->id) }}'"
-            type="button"
-            class="btn btn-warning">
-            Редактировать товар
-        </button>
-    @endif
-@endauth
+        @auth()
+            @if(auth()->user()->role == 'продавец')
+                <form method="post" action="{{ route('removeProduct', $item->id) }}">
+                    @csrf
+                    <button type="submit" class="btn btn-success">Удалить товар</button>
+                </form>
+
+                <button
+                    onclick="window.location.href = '{{ route('editProduct', $item->id) }}'"
+                    type="button"
+                    class="btn btn-warning">
+                    Редактировать товар
+                </button>
+            @endif
+        @endauth
+    </div>
+</li>
 </section>
