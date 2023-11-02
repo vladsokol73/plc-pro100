@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -24,17 +25,21 @@ class SellerCatalogController extends Controller
         $brands = Brand::query()
             ->paginate(9);
 
+        $category = Category::query()->paginate(999);
+
         return view('catalog.seller-catalog', [
             'products' => $products,
             'brands' => $brands,
+            'category' => $category
         ]);
     }
 
     //страница добавления продукта
     public function addProduct(Request $request)
     {
-        $brands = Brand::query()->paginate(9);
-        return view('product.add', ['brands' => $brands]);
+        $brands = Brand::query()->paginate(999);
+        $categories = Category::query()->paginate(999);
+        return view('product.add', ['brands' => $brands, 'categories' => $categories]);
     }
 
     //сохранение продукта
@@ -48,9 +53,12 @@ class SellerCatalogController extends Controller
             $name,
             file_get_contents($request->file('thumbnail'))
         );
-        Product::query()->create(
+        $categories = Category::query()->findOrFail($request->get('category_id'));
+        $request->request->remove('category_id');
+        $product = Product::query()->create(
             ['user_id' => $user_id, 'thumbnail' => $path] + $request->all()
         );
+        $product->categories()->attach($categories);
         return redirect()->route('sellerCatalog');
     }
 
@@ -70,6 +78,26 @@ class SellerCatalogController extends Controller
         return view('product.edit', ['product' => $product]);
     }
 
+    //сохр. ред. продукт
+    public function editProductSubmit(Request $request, $id)
+    {
+        $data = $request->all();
+        //если передали новую фотку-обновляем
+        if ($request->hasFile('image')) {
+            $format = str_replace('/storage/', '', Product::query()->findOrFail($id)->image);
+            Storage::delete($format);
+            $name = 'images/' . Str::random(6) . '.jpg';
+            $path = '/storage/' . $name;
+            Storage::put(
+                $name,
+                file_get_contents($request->file('image'))
+            );
+            $data['image'] = $path;
+        }
+        Product::query()->findOrFail($id)->update($data);
+        return redirect()->route('sellerCatalog');
+    }
+
     //страница добавления бренда
     public function addBrand(Request $request)
     {
@@ -79,15 +107,21 @@ class SellerCatalogController extends Controller
     //сохранить брэнд
     public function saveBrand(Request $request)
     {
-        $name = 'public/images/brands/' . Str::random(6) . '.jpg';
-        $path = '/storage/' . $name;
-        Storage::put(
-            $name,
-            file_get_contents($request->file('thumbnail'))
-        );
-        Brand::query()->create(
-            ['thumbnail' => $path] + $request->all()
-        );
+        if ($request->hasFile('image')){
+            $name = 'public/images/brands/' . Str::random(6) . '.jpg';
+            $path = '/storage/' . $name;
+            Storage::put(
+                $name,
+                file_get_contents($request->file('thumbnail'))
+            );
+        }
+        if ($request->hasFile('image')) {
+            Brand::query()->create(
+                ['thumbnail' => $path] + $request->all()
+            );
+        } else {
+            Brand::query()->create($request->all());
+        }
         return redirect()->route('sellerCatalog');
     }
 
@@ -107,7 +141,7 @@ class SellerCatalogController extends Controller
         return view('brand.edit', ['brand' => $brand]);
     }
 
-    //отправить ред.брэнд
+    //сохр. ред.брэнд
     public function editBrandSubmit(Request $request, $id)
     {
         $data = $request->all();
@@ -126,23 +160,38 @@ class SellerCatalogController extends Controller
         return redirect()->route('sellerCatalog');
     }
 
-    //отправить ред. продукт
-    public function editProductSubmit(Request $request, $id)
+    //страница добавления category
+    public function addCategory(Request $request)
+    {
+        return view('category.add');
+    }
+
+    //сохранить category
+    public function saveCategory(Request $request)
+    {
+        Category::query()->create($request->all());
+        return redirect()->route('sellerCatalog');
+    }
+
+    //удалить category
+    public function removeCategory(Request $request, $id)
+    {
+        Category::query()->findOrFail($id)->delete();
+        return redirect()->route('sellerCatalog');
+    }
+
+    //страница ред. category
+    public function editCategory(Request $request, $id)
+    {
+        $category = Category::query()->findOrFail($id);
+        return view('category.edit', ['category' => $category]);
+    }
+
+    //сохр. ред.category
+    public function editCategorySubmit(Request $request, $id)
     {
         $data = $request->all();
-        //если передали новую фотку-обновляем
-        if ($request->hasFile('image')) {
-            $format = str_replace('/storage/', '', Product::query()->findOrFail($id)->image);
-            Storage::delete($format);
-            $name = 'images/' . Str::random(6) . '.jpg';
-            $path = '/storage/' . $name;
-            Storage::put(
-                $name,
-                file_get_contents($request->file('image'))
-            );
-            $data['image'] = $path;
-        }
-        Product::query()->findOrFail($id)->update($data);
+        Category::query()->findOrFail($id)->update($data);
         return redirect()->route('sellerCatalog');
     }
 }

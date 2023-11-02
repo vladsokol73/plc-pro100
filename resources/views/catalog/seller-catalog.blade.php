@@ -3,6 +3,7 @@
 @section("title", $user->name ?? 'Каталог')
 
 @section("content")
+    <body>
     @auth()
         @if(auth()->user()->role == "продавец")
             <button
@@ -19,20 +20,29 @@
                 Добавить производителя
             </button>
 
-            <div class="card-columns">
-                <section class="mt-16 lg:mg-24">
-                    <div class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-3 sm:gap-4 md:gap-5 mt-8">
+            <button
+                onclick="window.location.href = '{{ route('addCategory') }}'"
+                type="button"
+                class="btn btn-warning">
+                Добавить категорию
+            </button>
+
+            <div class="container">
+                    <div class="cards">
                         @each('components.product', $products, 'item')
                     </div>
-                </section>
             </div>
 
-            <div class="card-columns">
-                <section class="mt-16 lg:mg-24">
-                    <div class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-3 sm:gap-4 md:gap-5 mt-8">
+            <div class="container1">
+                    <div class="cards1">
                         @each('components.brand', $brands, 'item')
                     </div>
-                </section>
+            </div>
+
+            <div class="container1">
+                    <div class="cards1">
+                        @each('components.category', $category, 'item')
+                    </div>
             </div>
         @endif
     @endauth
@@ -40,4 +50,5 @@
     <div class="paginator">
         {{ $products->withQueryString()->links('pagination::bootstrap-4')}}
     </div>
+    </body>
 @endsection

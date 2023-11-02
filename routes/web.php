@@ -55,20 +55,31 @@ Route::controller(ProfileController::class)->group(function () {
     Route::get('seller/sold', 'sellerProfile')->name('sellerProfile');
 });
 
-//Панель управления продуктами продавца
+//Панель управления продуктами, брендами и категориями продавца
 Route::controller(SellerCatalogController::class)->group(function () {
     Route::get('/seller-catalog', 'show')->name('sellerCatalog');
     Route::get('/product-add', 'addProduct')->name('addProduct');
     Route::get('/edit-product/{id}', 'editProduct')->name('editProduct');
-    Route::get('/blade-add', 'addBrand')->name('addBrand');
+    Route::post('/product-save', 'saveProduct')->name('saveProduct');
+    Route::post('/remove-product/{id}', 'removeProduct')->name('removeProduct');
+    Route::post('/update-product/{id}', 'editProductSubmit')->name('editProductSubmit');
+
+    Route::get('/brand-add', 'addBrand')->name('addBrand');
     Route::get('/edit-brand/{id}', 'editBrand')->name('editBrand');
     Route::post('/brand-save', 'saveBrand')->name('saveBrand');
     Route::post('/remove-brand/{id}', 'removeBrand')->name('removeBrand');
     Route::post('/update-brand/{id}', 'editBrandSubmit')->name('editBrandSubmit');
-    Route::post('/product-save', 'saveProduct')->name('saveProduct');
-    Route::post('/remove-product/{id}', 'removeProduct')->name('removeProduct');
-    Route::post('/update-product/{id}', 'editProductSubmit')->name('editProductSubmit');
+
+    Route::get('/category-add', 'addCategory')->name('addCategory');
+    Route::get('/edit-category/{id}', 'editCategory')->name('editCategory');
+    Route::post('/category-save', 'saveCategory')->name('saveCategory');
+    Route::post('/remove-category/{id}', 'removeCategory')->name('removeCategory');
+    Route::post('/update-category/{id}', 'editCategorySubmit')->name('editCategorySubmit');
+
+
 });
+
+//Route::get('email/verify/{id}/{hash}', fn() => 'verify')->middleware(['auth', 'signed'])->name('verification.verify');
 
 //Домой
 Route::get('/', HomeController::class)->name("home");
