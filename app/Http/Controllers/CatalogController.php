@@ -23,7 +23,6 @@ class CatalogController extends Controller
             ->get();
 
         $products = Product::query()
-            ->select(['id', 'title', 'slug', 'thumbnail', 'price'])
             ->when(request('s'), function (Builder $query) {
                 $query->whereFullText(['title', 'article'], request('s'));
             })
@@ -37,7 +36,7 @@ class CatalogController extends Controller
             })
             ->filtered()
             ->sorted()
-            ->paginate(4);
+            ->paginate(12);
 
         $categories = Category::query()
             ->select(['id', 'title', 'slug'])

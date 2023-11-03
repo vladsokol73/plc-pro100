@@ -75,8 +75,11 @@ Route::controller(SellerCatalogController::class)->group(function () {
     Route::post('/category-save', 'saveCategory')->name('saveCategory');
     Route::post('/remove-category/{id}', 'removeCategory')->name('removeCategory');
     Route::post('/update-category/{id}', 'editCategorySubmit')->name('editCategorySubmit');
+});
 
-
+Route::controller(\App\Http\Controllers\ContactUsFormController::class)->group(function () {
+    Route::get('/contact', 'contact')->name('contact');
+    Route::post('/contact-save', 'SubmitForm')->name('contact-save');
 });
 
 //Route::get('email/verify/{id}/{hash}', fn() => 'verify')->middleware(['auth', 'signed'])->name('verification.verify');

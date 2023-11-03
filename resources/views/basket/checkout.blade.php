@@ -17,7 +17,7 @@
                    required maxlength="255" value="{{ old('email') ?? '' }}">
         </div>
         <div class="form-group">
-            <input type="tel" class="form-control" name="phone" placeholder="Номер телефона"
+            <input type="number" class="form-control" name="phone" placeholder="Номер телефона"
                    required maxlength="255" value="{{ old('phone') ?? '' }}">
         </div>
         <div class="form-group">
