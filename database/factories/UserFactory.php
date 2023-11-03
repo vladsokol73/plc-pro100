@@ -10,8 +10,8 @@ class UserFactory extends Factory
     {
         return [
             'name' => 'Admin',
-            'email' => $this->faker->email(),
-            'password' => bcrypt('zxcv1234'),
+            'email' => 'plc-pro100@mail.ru',
+            'password' => bcrypt('hello_world_1_1'),
             'role' => 'продавец',
             'sorting' => $this->faker->numberBetween(1, 999)
         ];
