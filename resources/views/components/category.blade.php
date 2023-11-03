@@ -1,7 +1,5 @@
 <body>
-<div class="col-md-4">
-    <div class="product">
-        <div class="info">
+        <div class="category-filter">
             <a href="{{route('catalog', $item)}}">{{ $item->title }}</a>
         </div>
         @auth()
@@ -19,8 +17,6 @@
                 </button>
             @endif
         @endauth
-    </div>
-</div>
 
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

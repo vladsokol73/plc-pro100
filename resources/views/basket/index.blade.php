@@ -40,7 +40,11 @@
                 <th>{{ $basketCost }}</th>
             </tr>
         </table>
+        @auth()
         <a href="{{ route('checkout') }}">Оформить заказ</a>
+        @elseguest()
+            <a href="{{ route('login') }}">Оформить заказ</a>
+        @endguest
     @else
         <p>Ваша корзина пуста</p>
     @endif

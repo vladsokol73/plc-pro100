@@ -1,70 +1,119 @@
-@extends("layouts.app")
+@extends("layouts.catalog")
 
 @section("title", $user->name ?? 'Каталог')
 
 @section("content")
     <body>
-    <section>
+
+    <main class="cd-main-content">
+        <div class="cd-tab-filter-wrapper">
+            <div class="cd-tab-filter">
+                <ul class="cd-filters">
+                    <div class="total">
+                        Найдено: {{ $products->total() }} товаров
+
+                        <div class="sort" x-data="{}">
+                            <span>Сортировать по</span>
+
+                            <form x-ref="sortForm" action="{{ route('catalog', $category) }}">
+                                <select name="sort" x-on:change="$refs.sortForm.submit()" class="form-select">
+                                    <option value="" class="text-dark">по умолчанию</option>
+                                    <option @selected(request('sort') === 'price') value="price" class="text-dark">от
+                                        дешевых к
+                                        дорогим
+                                    </option>
+                                    <option @selected(request('sort') === '-price') value="-price" class="text-dark">от
+                                        дорогих
+                                        к
+                                        дешевым
+                                    </option>
+                                    <option @selected(request('sort') === 'title') value="title" class="text-dark">
+                                        наименованию
+                                    </option>
+                                </select>
+                            </form>
+                        </div>
+                    </div>
+                </ul> <!-- cd-filters -->
+            </div> <!-- cd-tab-filter -->
+        </div> <!-- cd-tab-filter-wrapper -->
         <ul class="step">
             <li><a href="{{ route('home') }}">Главная</a></li>
             <li><a href="{{ route('catalog') }}">Каталог</a></li>
-
             @if($category->exists)
                 <li>
                     <span>{{ $category->title }}</span>
                 </li>
             @endif
         </ul>
-    </section>
+        <section class="cd-gallery">
+            <ul>
+                @each('components.product', $products, 'item')
+                <li class="gap"></li>
+                <li class="gap"></li>
+                <li class="gap"></li>
+            </ul>
+            <div class="cd-fail-message">Не нашли что искали?<a href="#">Напишите нам</a></div>
+            {{--                <div class="paginator">--}}
+            {{--                    {{ $products->withQueryString()->links()}}--}}
+            {{--                </div>--}}
+        </section> <!-- cd-gallery -->
 
-    <section>
-        <div class="category">
-        <h3>Категории</h3>
-        <div>
-            @each('components.category', $categories, 'item')
-        </div>
-        </div>
-    </section>
+        <div class="cd-filter">
+            <form action="{{ route('catalog', $category) }}" method="get">
 
-    <section>
-        <aside class="filter">
-            <form action="{{ route('catalog', $category) }}" method="get" class="filter">
-                <div>
-                    <h5 class="filter-price">Цена</h5>
-                    <div>
+                <div class="cd-filter-block">
+                    <h4>Цена</h4>
+                    <div class="cd-filter-content">
                         <span class="from">От, ₽</span>
                         <span class="to">До, ₽</span>
-                    </div>
-                </div>
-
-                <input name="filters[price][from]"
-                       value="{{ request('filters.price.from', 0) }}"
-                       type="number"
-                       class="price-from"
-                       placeholder="От">
-                <span>-</span>
-
-                <input name="filters[price][to]"
-                       value="{{ request('filters.price.to', 999999) }}"
-                       type="number"
-                       class="price-to"
-                       placeholder="До">
-                <div>
-                    <h3>Бренды</h3>
-                    @foreach($brands as $brand)
-                        <div>
-                            <input name="filters[brands][{{ $brand->id }}]"
-                                   value="{{ $brand->id }}"
-                                   type="checkbox"
-                                   @checked(request('filters.brands.'.$brand->id))
-                                   id="filters-brands-{{ $brand->id }}">
-
-                            <label for="filters-brands-{{ $brand->id }}" class="form-checkbox-label">
-                                {{ $brand->title }}
-                            </label>
+                        <div class="cost-filter">
+                            <input name="filters[price][from]"
+                                   value="{{ request('filters.price.from', 0) }}"
+                                   type="number"
+                                   class="price-from"
+                                   placeholder="От">
+                            <span>-</span>
+                            <input name="filters[price][to]"
+                                   value="{{ request('filters.price.to', 999999) }}"
+                                   type="number"
+                                   class="price-to"
+                                   placeholder="До">
                         </div>
-                    @endforeach
-                </div>
+                    </div> <!-- cd-filter-content -->
+                </div> <!-- cd-filter-block -->
+
+                <div class="cd-filter-block">
+                    <h4>Бренды</h4>
+                    <ul class="cd-filter-content cd-filters list">
+                        @foreach($brands as $brand)
+                            <li>
+                                <input
+                                    class="filter"
+                                    name="filters[brands][{{ $brand->id }}]"
+                                    value="{{ $brand->id }}"
+                                    type="checkbox"
+                                    @checked(request('filters.brands.'.$brand->id))
+                                    id="filters-brands-{{ $brand->id }}">
+
+                                <label for="filters-brands-{{ $brand->id }}" class="checkbox-label">
+                                    {{ $brand->title }}
+                                </label>
+                            </li>
+                        @endforeach
+                    </ul> <!-- cd-filter-content -->
+                </div> <!-- cd-filter-block -->
+
+
+                <div class="cd-filter-block">
+                    <h4>Категории</h4>
+
+                    <ul class="cd-filter-content cd-filters list">
+                        <div class="category">
+                            @each('components.category', $categories, 'item')
+                        </div>
+                    </ul> <!-- cd-filter-content -->
+                </div> <!-- cd-filter-block -->
 
                 <div>
                     <button type="submit">Поиск</button>
@@ -75,39 +124,15 @@
                     </div>
                 @endif
             </form>
-        </aside>
-        <div class="total">
-            Найдено: {{ $products->total() }} товаров
 
-        <div class="sort" x-data="{}">
-            <span>Сортировать по</span>
+            <a href="#0" class="cd-close">Закрыть</a>
+        </div> <!-- cd-filter -->
 
-            <form x-ref="sortForm" action="{{ route('catalog', $category) }}">
-                <select name="sort" x-on:change="$refs.sortForm.submit()" class="form-select">
-                    <option value="" class="text-dark">по умолчанию</option>
-                    <option @selected(request('sort') === 'price') value="price" class="text-dark">от дешевых к
-                        дорогим
-                    </option>
-                    <option @selected(request('sort') === '-price') value="-price" class="text-dark">от дорогих к
-                        дешевым
-                    </option>
-                    <option @selected(request('sort') === 'title') value="title" class="text-dark">наименованию</option>
-                </select>
-            </form>
-        </div>
-        </div>
-
-        <!-- Product list -->
-        <div class="container products__container">
-        <ul class="imdiz-products imdiz-products_row">
-            <li class="product-wrapper">
-                @each('components.product', $products, 'item')
-            </li>
-        </ul>
-        </div>
-        <div class="paginator">
-            {{ $products->withQueryString()->links('vendor.pagination.bootstrap-4')}}
-        </div>
-    </section>
+        <a href="#0" class="cd-filter-trigger">Фильтры</a>
+    </main> <!-- cd-main-content -->
+    <script src="/js/jquery-2.1.1.js"></script>
+    <script src="/js/jquery.mixitup.min.js"></script>
+    <script src="/js/main.js"></script> <!-- Resource jQuery -->
     </body>
+    </html>
 @endsection
