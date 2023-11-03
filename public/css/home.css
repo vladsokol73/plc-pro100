@@ -345,3 +345,15 @@ p::before {
 .btn-box a:hover::before {
     width: 100%;
 }
+
+@media (max-width: 768px) {
+    #header {
+        height: auto;
+    }
+}
+
+@media (max-width: 578px) {
+    #header .logo {
+        text-align: center;
+    }
+}
