@@ -3,83 +3,39 @@
 @section("title", $product->title)
 
 @section("content")
-    @auth()
-        <div class="row">
-            <div class="col-12">
-                <div class="card-header">
-                    <h1>{{ $product->title }}</h1>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <img src="{{ $product->image }}"
-                                 alt="" class="img-fluid">
-                        </div>
-                        <div class="col-md-2">
-                            <p>Цена: {{ $product->price }} ₽</p>
-
-                            @if(auth()->user()->role == "покупатель")
-                                <form action="{{ route('basketAdd', ['id' => $product->id]) }}"
-                                      method="post" class="form-inline">
-                                    @csrf
-                                    <button type="submit" class="btn btn-success">Добавить в корзину</button>
-                                </form>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            Описание:
-                            <p class="mt-4 mb-0">{{ $product->description }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-footer">
-                    <div class="row">
-                        <div class="col-md-6">
-                            Продавец:
-                            {{ $seller }}
-                        </div>
-                    </div>
-                </div>
+    <section class="product-details">
+        <div class="image-slider">
+            <img src="" alt="">
+            <div class="product-images">
+                <img src="img/product image 1.png" class="active" alt="">
+                <img src="img/product image 2.png" alt="">
+                <img src="img/product image 3.png" alt="">
+                <img src="img/product image 4.png" alt="">
             </div>
         </div>
-    @endauth
 
-    @guest()
-        <div class="row">
-            <div class="col-12">
-                <div class="card-header">
-                    <h1>{{ $product->title }}</h1>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <img src="{{ $product->image }}"
-                                 alt="" class="img-fluid">
-                        </div>
-                        <div class="col-md-2">
-                            <p>Цена: {{ $product->price }} ₽</p>
+        <div class="details">
+            <h2 class="product-brand">calvin klein</h2>
+            <p class="product-short-des">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+            <span class="product-price">$99</span>
+            <span class="product-actual-price">$200</span>
+            <span class="product-discount">( 50% off )</span>
 
-                            <form action="{{ route('login') }}"
-                                  method="post" class="form-inline">
-                                @csrf
-                                <button
-                                    onclick="window.location.href = '{{ route("login") }}'"
-                                    type="button"
-                                    class="btn btn-outline-light me-2">
-                                    Добавить в корзину
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <p class="mt-4 mb-0">{{ $product->description }}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <p class="product-sub-heading">select size</p>
+
+            <input type="radio" name="size" value="s" checked hidden id="s-size">
+            <label for="s-size" class="size-radio-btn check">s</label>
+            <input type="radio" name="size" value="m" hidden id="m-size">
+            <label for="m-size" class="size-radio-btn">m</label>
+            <input type="radio" name="size" value="l" hidden id="l-size">
+            <label for="l-size" class="size-radio-btn">l</label>
+            <input type="radio" name="size" value="xl" hidden id="xl-size">
+            <label for="xl-size" class="size-radio-btn">xl</label>
+            <input type="radio" name="size" value="xxl" hidden id="xxl-size">
+            <label for="xxl-size" class="size-radio-btn">xxl</label>
+
+            <button class="btn cart-btn">add to cart</button>
+            <button class="btn">add to wishlist</button>
         </div>
-    @endguest
+    </section>
 @endsection
