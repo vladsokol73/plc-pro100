@@ -6,3 +6,7 @@ $(".five li:has('.submenu')").hover(
 import Alpine from 'alpinejs'
 window.Alpine = Alpine
 Alpine.start()
+
+$('.burger').click(function(){
+    $('.phone-hide').slideToggle();
+});
