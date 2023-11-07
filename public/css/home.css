@@ -351,3 +351,15 @@ p::before {
         display: none;
     }
 }
+
+button {
+    width: 50%;
+    height: 5vh;
+    color: #ffffff;
+    background: #00d689;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.8em;
+}
