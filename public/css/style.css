@@ -724,8 +724,7 @@ xcustom form elements
 }
 
 .product-brand{
-    text-transform: uppercase;
-    margin-left: 150px;
+    display: flex;
 }
 
 .product-short-des{
