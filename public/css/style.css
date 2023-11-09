@@ -782,3 +782,76 @@ select {
 .category-filter {
     margin-top: 10px;
 }
+
+/*Header*/
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem 9%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    font-size: 20px;
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    position: relative;
+}
+
+.logo a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background: #081b29;
+    animation: slideRight 1s ease forwards;
+    animation-delay: .4s;
+}
+
+@keyframes slideRight {
+    100% {
+        width: 0;
+    }
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-block;
+    margin-left: 4rem;
+    font-size: 16px;
+    transition: .5s;
+    position: relative;
+}
+
+.navbar a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background: #081b29;
+    animation: slideRight 1s ease forwards;
+    animation-delay: .3s;
+    z-index: 2;
+}
+
+.navbar a:hover {
+    color: #e805b9;
+}
+
+@media (max-width: 768px) {
+    .brand-logo {
+        display: none;
+    }
+}
