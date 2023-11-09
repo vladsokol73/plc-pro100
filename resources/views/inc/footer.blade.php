@@ -4,7 +4,7 @@
     <p class="info">Наша почта - plc-pro100@mail.ru</p>
     <p class="info">Телефон - </p>
     <div class="footer-social-container">
-        <div>
+        <div class="left">
             <a href="#" class="social-link">Политика конфиденциальности</a>
             <a href="#" class="social-link">Согласие на обработку персональных данных</a>
         </div>

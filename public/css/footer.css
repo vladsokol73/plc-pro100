@@ -46,3 +46,14 @@ footer {
     color: #fff;
     background: rgba(0, 0, 0, 0.2);
 }
+
+@media (max-width: 768px) {
+
+    .social-link {
+        display: flex;
+    }
+
+    .left a {
+        margin-top: 8px;
+    }
+}

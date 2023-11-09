@@ -197,13 +197,15 @@ body {
     padding: 70px 10% 0;
 }
 footer {
+    border-top: 1px solid #d1d1d1;
     margin-top: 20px;
     border-top: 1px solid #d1d1d1;
+    background: #081b29;
 }
 
 .footer-title, .info{
     color: rgba(255, 255, 255, 0.75);
-    margin: 20px 0;
+    margin: 20px 20px;
 }
 
 .footer-title{
@@ -218,8 +220,8 @@ footer {
 }
 
 .social-link{
-    color: #fff;
     margin-left: 20px;
+    color: #fff;
     text-decoration: none;
 }
 
@@ -228,10 +230,11 @@ footer {
 }
 
 .social-link:nth-child(1){
-    margin-left: 0;
+    margin-left: 20px;
 }
 
 .footer-credit{
+    margin-top: 10px;
     width: 100%;
     padding: 10px;
     position: relative;
@@ -349,6 +352,10 @@ p::before {
 @media (max-width: 768px) {
     .brand-logo {
         display: none;
+    }
+
+    .social-link {
+        display: flex;
     }
 }
 
