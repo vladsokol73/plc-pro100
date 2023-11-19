@@ -25,7 +25,7 @@
                               placeholder="Ваше сообщение" minlength="10" maxlength="255"></textarea>
             </div>
             <div class="submitBtn">
-                <button id="btn" type="submit">Отправить</button>
+                <button class="contact-btn" id="btn" type="submit">Отправить</button>
             </div>
             <div class="info container"></div>
         </form>
