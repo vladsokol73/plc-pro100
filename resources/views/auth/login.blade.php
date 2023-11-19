@@ -32,6 +32,7 @@
                     type="password"
                     name="password"
                     required="true"
+                    minlength="8"
                     :isError="$errors->has('email')"/>
                 <label for="">Пароль</label>
             </div>
@@ -42,10 +43,10 @@
             </x-forms.error>
             @enderror
 
-            <div class="forget">
-                <label for=""><input type="checkbox">Запомнить меня</label>
-                <a href="#">Забыли пароль</a>
-            </div>
+{{--            <div class="forget">--}}
+{{--                <label for=""><input type="checkbox">Запомнить меня</label>--}}
+{{--                <a href="#">Забыли пароль</a>--}}
+{{--            </div>--}}
 
             <x-forms.primary-button>Войти</x-forms.primary-button>
     <div class="register">

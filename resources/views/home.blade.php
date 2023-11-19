@@ -11,7 +11,7 @@
 </html>
 
 @section("title")
-    Главная
+    Продукция для промышленной автоматизации - PLC_Pro-100
 @endsection
 @include("inc.header")
 @section("content")
@@ -23,7 +23,7 @@
             <p>Мы-поставщик новых деталей для автоматизации, поставляем промышленное электронное оборудование и
                 компоненты для его ремонта в России.
                 Наша компания помогает решить проблему в максимально короткие сроки.</p>
-            <button onclick='location.href = "{{ route('contact') }}";'>Написать нам</button>
+            <button class="button-write-us" onclick='location.href = "{{ route('contact') }}";'>Написать нам</button>
         </div>
     </section>
     </body>

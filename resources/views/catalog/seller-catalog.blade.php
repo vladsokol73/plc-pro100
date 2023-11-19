@@ -9,39 +9,27 @@
             <button
                 onclick="window.location.href = '{{ route('addProduct') }}'"
                 type="button"
-                class="btn btn-warning">
+                class="btn-admin">
                 Добавить товар
             </button>
 
             <button
                 onclick="window.location.href = '{{ route('addBrand') }}'"
                 type="button"
-                class="btn btn-warning">
+                class="btn-admin">
                 Добавить производителя
             </button>
 
             <button
                 onclick="window.location.href = '{{ route('addCategory') }}'"
                 type="button"
-                class="btn btn-warning">
+                class="btn-admin">
                 Добавить категорию
             </button>
-
-            <div class="container">
-                    <div class="cards">
-                        @each('components.product', $products, 'item')
-                    </div>
-            </div>
 
             <div class="container1">
                     <div class="cards1">
                         @each('components.brand', $brands, 'item')
-                    </div>
-            </div>
-
-            <div class="container1">
-                    <div class="cards1">
-                        @each('components.category', $category, 'item')
                     </div>
             </div>
         @endif

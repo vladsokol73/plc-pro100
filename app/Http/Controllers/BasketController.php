@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Basket;
+use App\Models\Category;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
@@ -11,21 +12,31 @@ class BasketController extends Controller
 {
     //Страница корзины
     public function index(Request $request) {
+        $categories = Category::query()
+            ->select(['id', 'title', 'slug'])
+            ->has('products')
+            ->get();
+
         $basket_id = $request->cookie('basket_id');
         if (empty($basket_id)) {
             $basket = Basket::query()->create();
             $basket_id = $basket->id;
             $products = Basket::query()->findOrFail($basket_id)->products;
-            return view('basket.index', compact('products'));
+            return view('basket.index', ['products' => $products, 'categories' => $categories]);
         } else {
             $products = Basket::query()->findOrFail($basket_id)->products;
-            return view('basket.index', compact('products'));
+            return view('basket.index', ['products' => $products, 'categories' => $categories]);
         }
     }
 
     //Страница заказа
-    public function checkout() {
-        return view('basket.checkout');
+    public function checkout(Request $request) {
+        $categories = Category::query()
+            ->select(['id', 'title', 'slug'])
+            ->has('products')
+            ->get();
+
+        return view('basket.checkout', ['categories' => $categories]);
     }
 
     //Добавление в корзину
@@ -94,10 +105,14 @@ class BasketController extends Controller
 
     public function success(Request $request) {
         if ($request->session()->exists('order_id')) {
+            $categories = Category::query()
+                ->select(['id', 'title', 'slug'])
+                ->has('products')
+                ->get();
             // сюда покупатель попадает сразу после успешного оформления заказа
             $order_id = $request->session()->pull('order_id');
             $order = Order::query()->findOrFail($order_id);
-            return view('basket.success', compact('order'));
+            return view('basket.success', ['order' => $order, 'categories' => $categories]);
         } else {
             // если покупатель попал сюда случайно, не после оформления заказа, ему здесь делать нечего — отправляем на страницу корзины
             return redirect()->route('basket');

@@ -359,7 +359,7 @@ p::before {
     }
 }
 
-button {
+.button-write-us {
     width: 50%;
     height: 5vh;
     color: #ffffff;

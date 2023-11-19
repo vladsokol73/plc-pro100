@@ -7,26 +7,12 @@
 @section('content')
     <h1>Ваши продажи</h1>
 
-    @if (count($products))
-        <table class="table table-bordered" style="color: #ffffff">
-            <tr>
-                <th>№</th>
-                <th width="22%">Детали</th>
-                <th width="22%">Название</th>
-                <th width="22%">Цена</th>
-            </tr>
-            @foreach($products as $product)
-                <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>
-                        <a href="{{ route('product', $product) }}">
-                            Подробнее
-                        </a>
-                    </td>
-                    <td>{{ $product->title }}</td>
-                    <td>{{ $product->price }}</td>
-                </tr>
-            @endforeach
-        </table>
-    @endif
+    <div>
+    @foreach($orders as $order)
+        <div class="orders">
+        <h1>{{ $order->id }}</h1>
+            <a href="{{ route('userOrder', $order) }}">{{$order->name}}</a>
+        </div>
+    @endforeach
+    </div>
 @endsection

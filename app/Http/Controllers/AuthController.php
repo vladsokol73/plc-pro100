@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginFormRequest;
 use App\Http\Requests\RegisterFormRequest;
+use App\Models\Brand;
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -11,11 +13,21 @@ use Illuminate\Http\RedirectResponse;
 class AuthController extends Controller
 {
     public function register() {
-        return view("auth.register");
+        $categories = Category::query()
+            ->select(['id', 'title', 'slug'])
+            ->has('products')
+            ->get();
+
+        return view("auth.register", ['categories' => $categories]);
     }
 
     public function login() {
-        return view("auth.login");
+        $categories = Category::query()
+            ->select(['id', 'title', 'slug'])
+            ->has('products')
+            ->get();
+
+        return view("auth.login", ['categories' => $categories]);
     }
 
     public function loginSubmit(LoginFormRequest $request): RedirectResponse

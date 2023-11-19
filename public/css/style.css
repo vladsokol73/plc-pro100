@@ -705,7 +705,6 @@ xcustom form elements
     border-radius: 5px;
     transition: 0.5s;
     cursor: pointer;
-    opacity: 0;
     color: white;
 }
 
