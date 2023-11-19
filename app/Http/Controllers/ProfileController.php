@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
@@ -11,25 +12,47 @@ class ProfileController extends Controller
 {
     //профиль покупателя с заказами
     public function profile(Request $request) {
+        $categories = Category::query()
+            ->select(['id', 'title', 'slug'])
+            ->has('products')
+            ->get();
+
         $user_id = auth()->check() ? auth()->user()->id : null;
         $orders = User::query()
             ->findOrFail($user_id)
             ->orders;
-        return view('profile.user', compact('orders'));
+        return view('profile.user', ['orders' => $orders, 'categories' => $categories]);
     }
 
     //деталка заказа
     public function userOrder(Order $order) {
-        return view('profile.order', compact('order'));
+        $categories = Category::query()
+            ->select(['id', 'title', 'slug'])
+            ->has('products')
+            ->get();
+
+        if (auth()->check()) {
+        $user_id = auth()->user()->id;
+        if ($user_id == $order->user_id or $user_id == 1) {
+            return view('profile.order', ['order' => $order, 'categories' => $categories]);
+        } else {
+            abort(404);
+        }
+        } else {
+            return view('auth.login');
+        }
     }
 
     //профиль продавца
     public function sellerProfile() {
+        $categories = Category::query()
+            ->select(['id', 'title', 'slug'])
+            ->has('products')
+            ->get();
+
         $user_id = auth()->check() ? auth()->user()->id : null;
-        $products = Product::query()
-            ->where('user_id', '=', $user_id)
-            ->where('on_catalog_page', '=', false)
-        ->get();
-        return view('profile.seller', compact('products'));
+        $orders = Order::query()->get();
+
+        return view('profile.seller', ['orders' => $orders, 'categories' => $categories]);
     }
 }

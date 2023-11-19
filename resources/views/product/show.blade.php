@@ -33,7 +33,7 @@
 {{--            <input type="radio" name="size" value="xxl" hidden id="xxl-size">--}}
 {{--            <label for="xxl-size" class="size-radio-btn">xxl</label>--}}
 
-            <button class="btn cart-btn">add to cart</button>
+            <button class="btn cart-btn">В Корзину</button>
         </div>
     </section>
 @endsection

@@ -17,6 +17,10 @@ class SellerCatalogController extends Controller
     //каталог продуктов продавца
     public function show(): View|Application|Factory
     {
+        $categories = Category::query()
+            ->select(['id', 'title', 'slug'])
+            ->get();
+
         $user_id = auth()->check() ? auth()->user()->id : null;
         $products = Product::query()
             ->where('user_id', '=', $user_id)
@@ -30,7 +34,8 @@ class SellerCatalogController extends Controller
         return view('catalog.seller-catalog', [
             'products' => $products,
             'brands' => $brands,
-            'category' => $category
+            'category' => $category,
+            'categories' => $categories
         ]);
     }
 
@@ -74,8 +79,13 @@ class SellerCatalogController extends Controller
     //страница редактирования продукта
     public function editProduct(Request $request, $id)
     {
+        $categories = Category::query()
+            ->select(['id', 'title', 'slug'])
+            ->has('products')
+            ->get();
+
         $product = Product::query()->findOrFail($id);
-        return view('product.edit', ['product' => $product]);
+        return view('product.edit', ['product' => $product, 'categories' => $categories]);
     }
 
     //сохр. ред. продукт
@@ -101,7 +111,12 @@ class SellerCatalogController extends Controller
     //страница добавления бренда
     public function addBrand(Request $request)
     {
-        return view('brand.add');
+        $categories = Category::query()
+            ->select(['id', 'title', 'slug'])
+            ->has('products')
+            ->get();
+
+        return view('brand.add', ['categories' => $categories]);
     }
 
     //сохранить брэнд
@@ -137,8 +152,13 @@ class SellerCatalogController extends Controller
     //страница ред. брэнда
     public function editBrand(Request $request, $id)
     {
+        $categories = Category::query()
+            ->select(['id', 'title', 'slug'])
+            ->has('products')
+            ->get();
+
         $brand = Brand::query()->findOrFail($id);
-        return view('brand.edit', ['brand' => $brand]);
+        return view('brand.edit', ['brand' => $brand, 'categories' => $categories]);
     }
 
     //сохр. ред.брэнд
@@ -163,7 +183,12 @@ class SellerCatalogController extends Controller
     //страница добавления category
     public function addCategory(Request $request)
     {
-        return view('category.add');
+        $categories = Category::query()
+            ->select(['id', 'title', 'slug'])
+            ->has('products')
+            ->get();
+
+        return view('category.add', ['categories' => $categories]);
     }
 
     //сохранить category
@@ -183,8 +208,13 @@ class SellerCatalogController extends Controller
     //страница ред. category
     public function editCategory(Request $request, $id)
     {
+        $categories = Category::query()
+            ->select(['id', 'title', 'slug'])
+            ->has('products')
+            ->get();
+
         $category = Category::query()->findOrFail($id);
-        return view('category.edit', ['category' => $category]);
+        return view('category.edit', ['category' => $category, 'categories' => $categories]);
     }
 
     //сохр. ред.category

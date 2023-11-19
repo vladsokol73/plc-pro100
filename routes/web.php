@@ -21,7 +21,7 @@ Route::controller(AuthController::class)->group(function () {
     Route::post("/logout", "logOut")->name("logout");
 });
 
-//Каталог, деталка продукта, thumbnail
+//Каталог, деталка продукта, thumbnail, бренды
 Route::middleware('web')->group(function () {
     Route::get('/catalog/{category:slug?}', CatalogController::class)->name('catalog');
     Route::get('/product/{product:slug?}', ProductController::class)->name('product');

@@ -16,13 +16,13 @@
             @if(auth()->user()->role == 'продавец')
                 <form method="post" action="{{ route('removeBrand', $item->id) }}">
                     @csrf
-                    <button type="submit" class="btn btn-success">Удалить брэнд</button>
+                    <button type="submit" class="btn-admin">Удалить брэнд</button>
                 </form>
 
                 <button
                     onclick="window.location.href = '{{ route('editBrand', $item->id) }}'"
                     type="button"
-                    class="btn btn-warning">
+                    class="btn-admin">
                     Редактировать брэнд
                 </button>
             @endif

@@ -14,12 +14,13 @@ class ProductController extends Controller
     //деталка продукта
     public function __invoke(Product $product): View|Application|Factory
     {
-        $categories = $product->categories;
-        foreach ($categories as $category)
-        $categories_titles = $category->title;
+        $categories = Category::query()
+            ->select(['id', 'title', 'slug'])
+            ->has('products')
+            ->get();
 
         return view('product.show', [
-            'product' => $product,
+            'product' => $product, 'categories' => $categories
         ]);
     }
 }

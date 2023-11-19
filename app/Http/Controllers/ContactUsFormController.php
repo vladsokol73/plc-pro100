@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Contact;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -12,7 +13,12 @@ class ContactUsFormController extends Controller
 {
     public function contact()
     {
-        return view("contact");
+        $categories = Category::query()
+            ->select(['id', 'title', 'slug'])
+            ->has('products')
+            ->get();
+
+        return view("contact", ['categories' => $categories]);
     }
 
     // Store Contact Form data

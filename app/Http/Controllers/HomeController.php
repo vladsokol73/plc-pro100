@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Contracts\View\Factory;
@@ -13,6 +14,11 @@ class HomeController extends Controller
     //главная страница
     public function __invoke(): View|Application|Factory
     {
-        return view("home");
+        $categories = Category::query()
+            ->select(['id', 'title', 'slug'])
+            ->has('products')
+            ->get();
+
+        return view("home", ['categories' => $categories]);
     }
 }

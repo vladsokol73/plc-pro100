@@ -264,3 +264,58 @@ body {
     background: #383838;
     color: #fff;
 }
+
+.bag-product,
+.quantity-wrapper,
+.subtotal,
+.delivery,
+.total,
+.promo-code {
+    margin-left: 10px;
+    text-align: center;
+}
+
+.bag-total {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.btn-go-checkout {
+    margin-top: 1rem;
+    width: 20%;
+    height: 40px;
+}
+
+.btn-go-checkout:hover {
+    color: purple;
+    cursor: pointer;
+}
+
+.help {
+    margin-top: 100px;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+i{
+    color: black;
+}
+
+.top-bar, .bag {
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+
+
+.btn-remove {
+    color: black;
+    background: white;
+}
+
+.cart-product {
+    border-bottom: 1px solid #d1d1d1;
+}
