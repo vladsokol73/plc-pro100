@@ -1,3 +1,3 @@
-<button class="authbtn" type="submit">
+<button class="auth-btn" type="submit">
     {{ $slot }}
 </button>
