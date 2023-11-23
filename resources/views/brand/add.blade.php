@@ -13,6 +13,7 @@
                 <input type="text" class="form-control" name="title" placeholder="имя брэнда"
                        required minlength="3" maxlength="35" value="{{ old('title') ?? '' }}">
             </div>
+
             <div class="form-group" style="margin-top: 10px">
                 <div>Ваша картинка</div>
                 <input style="margin-top: 10px" type="file" class="form-control-file" name="thumbnail" id="thumbnail" multiple accept="image/*,image/jpeg"

@@ -41,15 +41,15 @@
                             {{ $category->title }}
                         @endforeach</p>
                     <p>Производитель: {{ $product->brand->title }}</p>
-                    <p>
-                    <label for="count" style="margin-right: 0.5rem;">Количество:</label>
-                    <select name="count" id="count">
-                        <option value disabled>Выберите</option>
-                        <option value="1" selected>1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                    </select>
-                    </p>
+{{--                    <p>--}}
+{{--                    <label for="count" style="margin-right: 0.5rem;">Количество:</label>--}}
+{{--                    <select name="count" id="count">--}}
+{{--                        <option value disabled>Выберите</option>--}}
+{{--                        <option value="1" selected>1</option>--}}
+{{--                        <option value="2">2</option>--}}
+{{--                        <option value="3">3</option>--}}
+{{--                    </select>--}}
+{{--                    </p>--}}
                     <span class="product-price">{{ $product->price}} &#8381; </span>
                     <form action="{{ route('basketRemove', ['id' => $product->id]) }}"
                           method="post" class="basket-remove">
