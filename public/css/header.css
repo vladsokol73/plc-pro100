@@ -56,6 +56,10 @@
     border-bottom-right-radius: 10px;
 }
 
+.search-btn:hover {
+    color: var(--glow-color);
+}
+
 .search-box::placeholder {
     color: #a9a9a9;
 }
@@ -67,7 +71,7 @@
 }
 
 .nav-items a:hover {
-    color: #e805b9;
+    color: var(--glow-color);
 }
 
 .nav-items a img {
@@ -84,22 +88,14 @@
     border-top: 1px solid #d1d1d1;
     border-bottom: 1px solid #d1d1d1;
     .list ul li a:hover {
-        background: #f50057;
-    }
-    .question {
-        border-bottom: 3px solid red;
-    }
-
-    .dropbtn {
-        background: #081b29;
-        border: none;
+        background: none;
     }
 
     .dropdown-content {
         display: none;
         position: absolute;
         background-color: #f1f1f1;
-        min-width: 160px;
+        min-width: 546px;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
         z-index: 9;
     }
@@ -285,6 +281,7 @@
 }
 .list ul {
     position: relative;
+    width: 273px;
 }
 .list ul li {
     position: relative;
@@ -292,12 +289,11 @@
     color: #fce4ec;
     list-style: none;
     margin: 4px 0;
-    border-left: 2px solid #f50057;
+    border-left: 2px solid var(--blue-color);
     transition: 0.5s;
-    cursor: pointer;
 }
-.list ul li:hover {
-    left: 10px;
+.list ul li a:hover {
+    color: var(--blue-color);
 }
 .list ul li span {
     position: relative;
@@ -315,7 +311,6 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background: #f50057;
     transform: scaleX(0);
     transform-origin: left;
     transition: 0.5s;
@@ -325,10 +320,9 @@
 }
 
 
-
-
 :root {
-    --glow-color: hsl(186 100% 69%);
+    --glow-color: rgb(132, 166, 237);
+    --blue-color: rgb(44, 88, 183);
 }
 
 *,
@@ -405,7 +399,7 @@
 }
 
 .glowing-btn:hover {
-    color: rgba(0, 0, 0, 0.8);
+    color: var(--blue-color);
     text-shadow: none;
     animation: none;
 }
@@ -533,3 +527,19 @@
     }
 }
 
+li>ul {
+    display: none;
+}
+
+li:hover>ul {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 273px;
+    background: white;
+    white-space: nowrap;
+}
+
+.glowing-btn + .dropdown-content {
+
+}

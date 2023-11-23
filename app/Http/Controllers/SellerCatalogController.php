@@ -19,7 +19,7 @@ class SellerCatalogController extends Controller
     public function show(): View|Application|Factory
     {
         $categories = Category::query()
-            ->select(['id', 'title', 'slug'])
+            ->select(['id', 'title', 'slug', 'parent_id'])
             ->get();
 
         $user_id = auth()->check() ? auth()->user()->id : null;
@@ -81,7 +81,7 @@ class SellerCatalogController extends Controller
     public function editProduct(Request $request, $id)
     {
         $categories = Category::query()
-            ->select(['id', 'title', 'slug'])
+            ->select(['id', 'title', 'slug', 'parent_id'])
             ->has('products')
             ->get();
 
@@ -113,7 +113,7 @@ class SellerCatalogController extends Controller
     public function addBrand(Request $request)
     {
         $categories = Category::query()
-            ->select(['id', 'title', 'slug'])
+            ->select(['id', 'title', 'slug', 'parent_id'])
             ->has('products')
             ->get();
 
@@ -154,7 +154,7 @@ class SellerCatalogController extends Controller
     public function editBrand(Request $request, $id)
     {
         $categories = Category::query()
-            ->select(['id', 'title', 'slug'])
+            ->select(['id', 'title', 'slug', 'parent_id'])
             ->has('products')
             ->get();
 
@@ -185,8 +185,8 @@ class SellerCatalogController extends Controller
     public function addCategory(Request $request)
     {
         $categories = Category::query()
-            ->select(['id', 'title', 'slug'])
-            ->where('category_id', '=', null)
+            ->select(['id', 'title', 'slug', 'parent_id'])
+            ->where('parent_id', '=', null)
             ->get();
 
         return view('category.add', ['categories' => $categories]);
@@ -196,7 +196,6 @@ class SellerCatalogController extends Controller
     public function saveCategory(Request $request)
     {
         $category = Category::query()->create($request->all());
-        $category->category_id = $request->get('category_id');
         return redirect()->route('sellerCatalog');
     }
 
@@ -211,7 +210,7 @@ class SellerCatalogController extends Controller
     public function editCategory(Request $request, $id)
     {
         $categories = Category::query()
-            ->select(['id', 'title', 'slug'])
+            ->select(['id', 'title', 'slug', 'parent_id'])
             ->has('products')
             ->get();
 

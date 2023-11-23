@@ -72,12 +72,16 @@ textarea {
     width: 50%;
     height: 5vh;
     color: #ffffff;
-    background: #00d689;
+    background: var(--blue-color);
     outline: none;
     border: none;
     border-radius: 10px;
     cursor: pointer;
     font-size: 0.8em;
+}
+
+.contact-btn:hover {
+    background: var(--glow-color);
 }
 @media screen and (min-width:900px) {
     form>div input {
@@ -99,3 +103,4 @@ textarea {
 .fa-solid {
     color: #1f2937;
 }
+

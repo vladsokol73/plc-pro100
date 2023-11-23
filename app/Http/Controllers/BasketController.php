@@ -13,7 +13,7 @@ class BasketController extends Controller
     //Страница корзины
     public function index(Request $request) {
         $categories = Category::query()
-            ->select(['id', 'title', 'slug'])
+            ->select(['id', 'title', 'slug', 'parent_id'])
             ->has('products')
             ->get();
 
@@ -32,7 +32,7 @@ class BasketController extends Controller
     //Страница заказа
     public function checkout(Request $request) {
         $categories = Category::query()
-            ->select(['id', 'title', 'slug'])
+            ->select(['id', 'title', 'slug', 'parent_id'])
             ->has('products')
             ->get();
 
