@@ -713,7 +713,7 @@ xcustom form elements
 }
 
 .card-btn:hover{
-    color: #e805b9;
+    color: #41307c;
 }
 
 .product-info{
@@ -846,7 +846,7 @@ select {
 }
 
 .navbar a:hover {
-    color: #e805b9;
+    color: #41307c;
 }
 
 @media (max-width: 768px) {

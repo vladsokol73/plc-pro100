@@ -177,7 +177,7 @@ body {
 }
 
 .navbar a:hover {
-    color: #e805b9;
+    color: #41307c;
 }
 
 .button-logout {
@@ -226,7 +226,7 @@ footer {
 }
 
 .social-link:hover {
-    color: #e805b9;
+    color: #41307c;
 }
 
 .social-link:nth-child(1){
@@ -259,7 +259,7 @@ footer {
 
 .home-detail h3:nth-child(2) {
     font-size: 23px;
-    color: #e805b9;
+    color: white;
     font-weight: 800;
     margin-bottom: 30px;
 }
@@ -315,7 +315,7 @@ p::before {
 }
 
 .btn-box a:hover {
-    color: #e805b9;
+    color: #41307c;
 }
 
 .btn-box a::before {
@@ -363,10 +363,14 @@ p::before {
     width: 50%;
     height: 5vh;
     color: #ffffff;
-    background: #00d689;
+    background: var(--blue-color);
     outline: none;
     border: none;
     border-radius: 10px;
     cursor: pointer;
     font-size: 0.8em;
+}
+
+.button-write-us:hover {
+    background: var(--glow-color);
 }

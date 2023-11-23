@@ -12,7 +12,8 @@ class Category extends Model
 
     protected $fillable = [
         'slug',
-        'title'
+        'title',
+        'parent_id'
     ];
 
     protected static function boot()
@@ -28,9 +29,4 @@ class Category extends Model
     {
         return $this->belongsToMany(Product::class);
     }
-
-    public function categories(): BelongsToMany
-{
-    return $this->belongsToMany(Category::class);
-}
 }

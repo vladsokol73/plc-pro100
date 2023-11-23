@@ -13,7 +13,7 @@ class ProfileController extends Controller
     //профиль покупателя с заказами
     public function profile(Request $request) {
         $categories = Category::query()
-            ->select(['id', 'title', 'slug'])
+            ->select(['id', 'title', 'slug', 'parent_id'])
             ->has('products')
             ->get();
 
@@ -27,7 +27,7 @@ class ProfileController extends Controller
     //деталка заказа
     public function userOrder(Order $order) {
         $categories = Category::query()
-            ->select(['id', 'title', 'slug'])
+            ->select(['id', 'title', 'slug', 'parent_id'])
             ->has('products')
             ->get();
 
@@ -46,7 +46,7 @@ class ProfileController extends Controller
     //профиль продавца
     public function sellerProfile() {
         $categories = Category::query()
-            ->select(['id', 'title', 'slug'])
+            ->select(['id', 'title', 'slug', 'parent_id'])
             ->has('products')
             ->get();
 

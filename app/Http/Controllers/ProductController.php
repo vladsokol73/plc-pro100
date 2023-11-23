@@ -15,7 +15,7 @@ class ProductController extends Controller
     public function __invoke(Product $product): View|Application|Factory
     {
         $categories = Category::query()
-            ->select(['id', 'title', 'slug'])
+            ->select(['id', 'title', 'slug', 'parent_id'])
             ->has('products')
             ->get();
 

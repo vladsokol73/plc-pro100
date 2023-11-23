@@ -15,8 +15,9 @@
             </div>
 
             <div class="form-group">
-                <select id="category_id" name="category_id">
-                    <option value="{{null}}">Ничего</option>
+                <p>Категория-родитель</p>
+                <select id="parent_id" name="parent_id">
+                    <option value="{{null}}">Отсутствует</option>
                     @foreach($categories as $item)
                         <option value="{{$item->id}}">{{ $item->title }}</option>
                     @endforeach

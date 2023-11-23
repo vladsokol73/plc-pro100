@@ -14,7 +14,7 @@ class AuthController extends Controller
 {
     public function register() {
         $categories = Category::query()
-            ->select(['id', 'title', 'slug'])
+            ->select(['id', 'title', 'slug', 'parent_id'])
             ->has('products')
             ->get();
 
@@ -23,7 +23,7 @@ class AuthController extends Controller
 
     public function login() {
         $categories = Category::query()
-            ->select(['id', 'title', 'slug'])
+            ->select(['id', 'title', 'slug', 'parent_id'])
             ->has('products')
             ->get();
 

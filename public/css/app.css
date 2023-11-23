@@ -110,7 +110,7 @@ body {
 }
 
 .card-btn:hover{
-    color: #e805b9;
+    color: #41307c;
 }
 
 .product-info{
@@ -287,7 +287,7 @@ body {
 }
 
 .btn-go-checkout:hover {
-    color: purple;
+    color: #41307c;
     cursor: pointer;
 }
 

@@ -39,7 +39,7 @@ class CatalogController extends Controller
             ->paginate(12);
 
         $categories = Category::query()
-            ->select(['id', 'title', 'slug'])
+            ->select(['id', 'title', 'slug', 'parent_id'])
             ->has('products')
             ->get();
 

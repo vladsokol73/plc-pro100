@@ -56,17 +56,29 @@
     <ul class="links-container">
         <div class="dropdown list">
 
-            <li class="link-item categories"><button class='glowing-btn'><span class='glowing-txt'>К<span class='faulty-letter'>А</span>ТЕГОРИИ</span></button></li>
+            <li class="link-item categories">
+                <button class='glowing-btn'><span class='glowing-txt'>К<span
+                            class='faulty-letter'>А</span>ТЕГОРИИ</span></button>
+            </li>
 
             <div class="dropdown-content list">
                 <ul>
-                @foreach($categories as $category)
-                    <li><span><a href="{{route('catalog', $category)}}">{{$category->title}}</a></span></li>
-                @endforeach
+                    @foreach($categories as $category)
+                        @if($category->parent_id == null)
+                            <li><span><a href="{{route('catalog', $category)}}">{{$category->title}}
+                                    </a></span>
+                            <ul>
+                                @foreach($categories as $subcategory)
+                                    @if($subcategory->parent_id == $category->id)
+                                        <li><span><a href="{{route('catalog', $subcategory)}}">{{$subcategory->title}}</a></span></li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                            </li>
+                        @endif
+                    @endforeach
                 </ul>
             </div>
         </div>
-{{--        <li class="link-item brands"><a href="#" class="link">Производители</a></li>--}}
-
     </ul>
 </header>
