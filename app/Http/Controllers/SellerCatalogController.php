@@ -11,6 +11,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use phpDocumentor\Reflection\Types\Null_;
 
 class SellerCatalogController extends Controller
 {
@@ -185,7 +186,7 @@ class SellerCatalogController extends Controller
     {
         $categories = Category::query()
             ->select(['id', 'title', 'slug'])
-            ->has('products')
+            ->where('category_id', '=', null)
             ->get();
 
         return view('category.add', ['categories' => $categories]);
@@ -194,7 +195,8 @@ class SellerCatalogController extends Controller
     //сохранить category
     public function saveCategory(Request $request)
     {
-        Category::query()->create($request->all());
+        $category = Category::query()->create($request->all());
+        $category->category_id = $request->get('category_id');
         return redirect()->route('sellerCatalog');
     }
 
