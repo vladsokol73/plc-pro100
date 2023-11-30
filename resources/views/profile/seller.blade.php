@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section("title")
-    Ваши продажи
+    Профиль
 @endsection
 
 @section('content')
-    <h1>Ваши продажи</h1>
+    <h1 class="profile-title">Ваши продажи</h1>
 
     <div>
     @foreach($orders as $order)

@@ -72,7 +72,7 @@ h2 {
 
 input:focus ~ label,
 input:valid ~ label {
-    top: -5px;
+    top: -10px;
 }
 
 .inputbox input {
@@ -84,6 +84,20 @@ input:valid ~ label {
     font-size: 1em;
     padding: 0 35px 0 5px;
     color: #fff;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    border: 1px solid var(--glow-color);
+    -webkit-box-shadow: 0 0 0px 1000px var(--blue-color) inset;
+    transition: background-color 5000s ease-in-out 0s;
 }
 
 .inputbox ion-icon {
