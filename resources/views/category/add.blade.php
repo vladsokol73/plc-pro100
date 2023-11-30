@@ -11,7 +11,7 @@
             @csrf
             <div class="form-group" style="margin-top: 10px">
                 <input type="text" class="form-control" name="title" placeholder="название категории"
-                       required minlength="3" maxlength="35" value="{{ old('title') ?? '' }}">
+                       required minlength="3" maxlength="22" value="{{ old('title') ?? '' }}">
             </div>
 
             <div class="form-group">

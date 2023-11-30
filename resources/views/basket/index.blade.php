@@ -80,13 +80,14 @@
                 </button>
             @endguest
         </div>
-
-        <div class="help">
-            <p>Нужна помощь? Звоните бесплатно <a href="tel:+79297949431">+7(929)794-94-31</a></p>
-        </div>
     @else
+        <div class="basket-clear">
         <p>Ваша корзина пуста</p>
+        </div>
     @endif
+    <div class="help">
+        <p>Нужна помощь? Звоните бесплатно <a href="tel:+79297949431">+7(929)794-94-31</a></p>
+    </div>
 @endsection
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"

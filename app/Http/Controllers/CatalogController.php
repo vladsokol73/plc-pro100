@@ -36,7 +36,7 @@ class CatalogController extends Controller
             })
             ->filtered()
             ->sorted()
-            ->paginate(12);
+            ->paginate(16);
 
         $categories = Category::query()
             ->select(['id', 'title', 'slug', 'parent_id'])

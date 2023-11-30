@@ -66,7 +66,7 @@
                     @foreach($categories as $category)
                         @if($category->parent_id == null)
                             <li><span><a href="{{route('catalog', $category)}}">{{$category->title}}
-                                    </a></span>
+                                    </a></span><ion-icon name="chevron-forward-outline"></ion-icon>
                             <ul>
                                 @foreach($categories as $subcategory)
                                     @if($subcategory->parent_id == $category->id)

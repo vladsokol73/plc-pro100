@@ -5,8 +5,8 @@
 @endsection
 
 @section('content')
-    <h1 class="mb-4">Оформить заказ</h1>
-    <form method="post" action="{{ route('saveOrder') }}">
+    <form method="post" class="checkout" action="{{ route('saveOrder') }}">
+        <h1 class="mb-4">Оформить заказ</h1>
         @csrf
         <div class="form-group">
             <input type="text" class="form-control" name="name" placeholder="Имя, Фамилия"
@@ -26,10 +26,10 @@
         </div>
         <div class="form-group">
             <textarea class="form-control" name="comment" placeholder="Комментарий"
-                      maxlength="255" rows="2">{{ old('comment') ?? '' }}</textarea>
+                      maxlength="255">{{ old('comment') ?? '' }}</textarea>
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-success">Оформить</button>
+            <button type="submit" class="btn checkout-submit">Оформить</button>
         </div>
     </form>
 @endsection
