@@ -319,3 +319,29 @@ i{
 .cart-product {
     border-bottom: 1px solid #d1d1d1;
 }
+
+.basket-clear {
+    position: relative;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.checkout {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.checkout-submit {
+    color: #ffffff;
+    background: var(--blue-color);
+    border-radius: 30px;
+}
+
+.checkout-submit:hover {
+    background: var(--glow-color);
+}
+
+.form-control {
+
+}

@@ -41,6 +41,13 @@
             <li><a href="{{ route('home') }}">Главная</a></li>
             <li><a href="{{ route('catalog') }}">Каталог</a></li>
             @if($category->exists)
+                @if($category->parent_id != null)
+                    @foreach($categories as $item)
+                        @if($item->id == $category->parent_id)
+                            <li><a href="{{route('catalog', $item)}}">{{$item->title}}</a></li>
+                        @endif
+                    @endforeach
+                @endif
                 <li>
                     <span>{{ $category->title }}</span>
                 </li>
@@ -53,10 +60,8 @@
                 <li class="gap"></li>
                 <li class="gap"></li>
             </ul>
-            <div class="cd-fail-message">Не нашли что искали?<a href="#">Напишите нам</a></div>
-            {{--                <div class="paginator">--}}
-            {{--                    {{ $products->withQueryString()->links()}}--}}
-            {{--                </div>--}}
+            <div class="cd-fail-message"><p>Не нашли что искали?<a href="{{route('contact')}}"> Напишите нам</a></p></div>
+            {{ $products->withQueryString()->links()}}
         </section> <!-- cd-gallery -->
 
         <div class="cd-filter">
@@ -89,12 +94,12 @@
                         @foreach($brands as $brand)
                             <li>
                                 <input
-                                    class="filter"
-                                    name="filters[brands][{{ $brand->id }}]"
-                                    value="{{ $brand->id }}"
-                                    type="checkbox"
-                                    @checked(request('filters.brands.'.$brand->id))
-                                    id="filters-brands-{{ $brand->id }}">
+                                        class="filter"
+                                        name="filters[brands][{{ $brand->id }}]"
+                                        value="{{ $brand->id }}"
+                                        type="checkbox"
+                                        @checked(request('filters.brands.'.$brand->id))
+                                        id="filters-brands-{{ $brand->id }}">
 
                                 <label for="filters-brands-{{ $brand->id }}" class="checkbox-label">
                                     {{ $brand->title }}
@@ -134,5 +139,4 @@
     <script src="/js/jquery.mixitup.min.js"></script>
     <script src="/js/main.js"></script> <!-- Resource jQuery -->
     </body>
-    </html>
 @endsection

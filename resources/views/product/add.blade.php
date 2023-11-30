@@ -36,6 +36,7 @@
             </div>
 
             <div class="form-group" style="margin-top: 10px">
+                <p>Бренд</p>
                 <select id="brand_id" name="brand_id">
                     @foreach($brands as $item)
                         <option value="{{$item->id}}">{{ $item->title }}</option>
@@ -44,9 +45,24 @@
             </div>
 
             <div class="form-group" style="margin-top: 10px">
+                <p>Категория</p>
                 <select id="category_id" name="category_id">
                     @foreach($categories as $item)
-                        <option value="{{$item->id}}">{{ $item->title }}</option>
+                        @if($item->parent_id == null)
+                            <option value="{{$item->id}}">{{ $item->title }}</option>
+                        @endif
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="form-group" style="margin-top: 10px">
+                <p>Подкатегория</p>
+                <select id="subcategory_id" name="subcategory_id">
+                    <option value="{{null}}">Отсутствует</option>
+                    @foreach($categories as $item)
+                        @if($item->parent_id != null)
+                            <option value="{{$item->id}}">{{ $item->title }}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>
