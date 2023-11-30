@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section("title")
-    Ваши заказы
+    Профиль
 @endsection
 
 @section('content')
-    <h1>Ваши заказы</h1>
+    <h1 class="profile-title">Ваши заказы</h1>
 
     @if (count($orders))
         <table class="table table-bordered" style="color: #ffffff">
