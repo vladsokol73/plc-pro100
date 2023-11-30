@@ -41,6 +41,16 @@ class Product extends Model
         });
     }
 
+    #[SearchUsingPrefix(['title'])]
+    #[SearchUsingFullText(['article'])]
+    public function toSearchableArray(): array
+    {
+        return [
+            'title' => $this->title,
+            'article' => $this->article,
+        ];
+    }
+
     public function scopeFiltered(Builder $query)
     {
         $query->when(request('filters.brands'), function (Builder $q) {
