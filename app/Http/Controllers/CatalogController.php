@@ -22,11 +22,9 @@ class CatalogController extends Controller
             ->has('products')
             ->get();
 
-        $products = Product::query()
-            ->when(request('s'), function (Builder $query) {
-                $query->whereFullText(['title', 'article'], request('s'));
-            })
-            ->when($category->exists, function (Builder $query) use ($category) {
+        $products = Product::search(request('s'))
+            ->query(function (Builder $query) use ($category) {
+            $query->when($category->exists, function (Builder $query) use ($category) {
                 $query->whereRelation(
                     'categories',
                     'categories.id',
@@ -34,8 +32,9 @@ class CatalogController extends Controller
                     $category->id
                 );
             })
-            ->filtered()
-            ->sorted()
+                ->filtered()
+                ->sorted();
+        })
             ->paginate(16);
 
         $categories = Category::query()
