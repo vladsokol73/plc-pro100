@@ -61,9 +61,11 @@ class SellerCatalogController extends Controller
             file_get_contents($request->file('thumbnail'))
         );
         $categories = Category::query()->findOrFail($request->get('category_id'));
-        $subcategories = null;
+
         if ($request->get('subcategory_id') != null) {
             $subcategories = Category::query()->findOrFail($request->get('subcategory_id'));
+        } else {
+            $subcategories = null;
         }
         $request->request->remove('category_id');
         $request->request->remove('subcategory_id');
@@ -71,7 +73,7 @@ class SellerCatalogController extends Controller
             ['user_id' => $user_id, 'thumbnail' => $path] + $request->all()
         );
         $product->categories()->attach($categories);
-        if ($request->get('subcategory_id') != null) {
+        if ($subcategories != null) {
             $product->categories()->attach($subcategories);
         }
         return redirect()->route('sellerCatalog');
