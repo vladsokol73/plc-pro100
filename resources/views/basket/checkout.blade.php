@@ -9,18 +9,22 @@
         <h1 class="mb-4">Оформить заказ</h1>
         @csrf
         <div class="form-group">
-            <input type="text" class="form-control" name="name" placeholder="Имя, Фамилия"
+            <i class="fa fa-user icon"></i>
+            <input type="text" class="form-control" name="name" placeholder="Имя"
                    required maxlength="255" value="{{ old('name') ?? '' }}">
         </div>
         <div class="form-group">
-            <input type="email" class="form-control" name="email" placeholder="Адрес почты"
+            <i class="fa fa-envelope"></i>
+            <input type="email" class="form-control" name="email" placeholder="Почта"
                    required maxlength="255" value="{{ old('email') ?? '' }}">
         </div>
         <div class="form-group">
-            <input type="number" class="form-control" name="phone" placeholder="Номер телефона"
+            <i class="fa-solid fa-phone"></i>
+            <input type="number" class="form-control" name="phone" placeholder="Телефон"
                    required maxlength="255" value="{{ old('phone') ?? '' }}">
         </div>
         <div class="form-group">
+            <i class="fa-solid fa-location-dot"></i>
             <input type="text" class="form-control" name="address" placeholder="Адрес доставки"
                    required maxlength="255" value="{{ old('address') ?? '' }}">
         </div>

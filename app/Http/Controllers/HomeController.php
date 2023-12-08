@@ -17,6 +17,7 @@ class HomeController extends Controller
         $categories = Category::query()
             ->select(['id', 'title', 'slug', 'parent_id'])
             ->has('products')
+            ->orderBy('title')
             ->get();
 
         return view("home", ['categories' => $categories]);

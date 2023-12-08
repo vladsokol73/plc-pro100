@@ -114,14 +114,32 @@
                     <h4>Категории</h4>
 
                     <ul class="cd-filter-content cd-filters list">
-                        <div class="category">
-                            @each('components.category', $categories, 'item')
-                        </div>
+{{--                        <div class="category">--}}
+{{--                            @each('components.category', $categories, 'item')--}}
+{{--                        </div>--}}
+
+                        <ul>
+                            @foreach($categories as $category)
+                                @if($category->parent_id == null)
+                                    <li><span><a href="{{route('catalog', $category)}}">{{$category->title}}
+                                    </a></span><ion-icon name="chevron-forward-outline"></ion-icon>
+                                        <ul>
+                                            @foreach($categories as $subcategory)
+                                                @if($subcategory->parent_id == $category->id)
+                                                    <li><span><a href="{{route('catalog', $subcategory)}}">{{$subcategory->title}}</a></span></li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                @endif
+                            @endforeach
+                        </ul>
+
                     </ul> <!-- cd-filter-content -->
                 </div> <!-- cd-filter-block -->
 
                 <div>
-                    <button type="submit">Поиск</button>
+                    <button class="button-filter" type="submit">Поиск</button>
                 </div>
                 @if(@request('filters'))
                     <div>

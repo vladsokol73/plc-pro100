@@ -330,6 +330,7 @@ i{
     position: relative;
     text-align: center;
     color: white;
+    padding: 15px;
 }
 
 .checkout-submit {
@@ -348,4 +349,30 @@ i{
 
 .profile-title {
     text-align: center;
+}
+
+.checkout input {
+    padding-left: 40px;
+    margin: 10px;
+    width: 30%;
+    border-radius: 20px;
+    font-size: 1em;
+    height: 2em;
+}
+
+.checkout textarea {
+    padding-left: 20px;
+    padding-top: 15px;
+    margin: 10px;
+    width: 30%;
+    border-radius: 20px;
+    font-size: 1em;
+    height: 6em;
+}
+
+.checkout i {
+    position: absolute;
+    margin-top: 17px;
+    margin-left: 20px;
+    opacity: 0.6;
 }

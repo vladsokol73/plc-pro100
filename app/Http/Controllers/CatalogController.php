@@ -5,12 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
-use App\Models\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Cookie;
 
 class CatalogController extends Controller
 {
@@ -40,6 +38,7 @@ class CatalogController extends Controller
         $categories = Category::query()
             ->select(['id', 'title', 'slug', 'parent_id'])
             ->has('products')
+            ->orderBy('title')
             ->get();
 
         return view('catalog.catalog', [

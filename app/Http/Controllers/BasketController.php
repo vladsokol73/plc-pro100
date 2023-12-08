@@ -15,6 +15,7 @@ class BasketController extends Controller
         $categories = Category::query()
             ->select(['id', 'title', 'slug', 'parent_id'])
             ->has('products')
+            ->orderBy('title')
             ->get();
 
         $basket_id = $request->cookie('basket_id');
@@ -34,6 +35,7 @@ class BasketController extends Controller
         $categories = Category::query()
             ->select(['id', 'title', 'slug', 'parent_id'])
             ->has('products')
+            ->orderBy('title')
             ->get();
 
         return view('basket.checkout', ['categories' => $categories]);
@@ -108,6 +110,7 @@ class BasketController extends Controller
             $categories = Category::query()
                 ->select(['id', 'title', 'slug'])
                 ->has('products')
+                ->orderBy('title')
                 ->get();
             // сюда покупатель попадает сразу после успешного оформления заказа
             $order_id = $request->session()->pull('order_id');
