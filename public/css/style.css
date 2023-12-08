@@ -867,13 +867,27 @@ select {
     }
 }
 
+.section {
+    .navigation {
+        width: 100%;
+
+    }
+}
+
 .navigation {
-  transform: scale(2);
-  display: flex;
-  position: absolute;
-  left: 47.5%;
-  justify-content: space-between;
-  align-items: center;
+    left: 50%;
+    right: 50%;
+    transform: scale(2);
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .navigation {
+        transform: scale(1);
+    }
 }
 
 .all-step {
@@ -1062,13 +1076,20 @@ select {
   transition-duration: 150ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
-
-
-
-
-
   :hover {
     color: #6B7280;
   }
 
+}
+
+.button-filter {
+    color: white;
+    background: #41307c;
+    border-radius: 20px;
+    transform: scale(1.5);
+    cursor: pointer;
+}
+
+.button-filter:hover {
+    box-shadow: #41307c 0px 0px 20px 0px;
 }

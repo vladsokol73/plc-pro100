@@ -21,6 +21,7 @@ class SellerCatalogController extends Controller
     {
         $categories = Category::query()
             ->select(['id', 'title', 'slug', 'parent_id'])
+            ->orderBy('title')
             ->get();
 
         $user_id = auth()->check() ? auth()->user()->id : null;
@@ -45,7 +46,7 @@ class SellerCatalogController extends Controller
     public function addProduct(Request $request)
     {
         $brands = Brand::query()->paginate(999);
-        $categories = Category::query()->paginate(999);
+        $categories = Category::query()->orderBy('title')->paginate(999);
         return view('product.add', ['brands' => $brands, 'categories' => $categories]);
     }
 
@@ -94,6 +95,7 @@ class SellerCatalogController extends Controller
         $categories = Category::query()
             ->select(['id', 'title', 'slug', 'parent_id'])
             ->has('products')
+            ->orderBy('title')
             ->get();
 
         $product = Product::query()->findOrFail($id);
@@ -126,6 +128,7 @@ class SellerCatalogController extends Controller
         $categories = Category::query()
             ->select(['id', 'title', 'slug', 'parent_id'])
             ->has('products')
+            ->orderBy('title')
             ->get();
 
         return view('brand.add', ['categories' => $categories]);
@@ -167,6 +170,7 @@ class SellerCatalogController extends Controller
         $categories = Category::query()
             ->select(['id', 'title', 'slug', 'parent_id'])
             ->has('products')
+            ->orderBy('title')
             ->get();
 
         $brand = Brand::query()->findOrFail($id);
@@ -198,6 +202,7 @@ class SellerCatalogController extends Controller
         $categories = Category::query()
             ->select(['id', 'title', 'slug', 'parent_id'])
             ->where('parent_id', '=', null)
+            ->orderBy('title')
             ->get();
 
         return view('category.add', ['categories' => $categories]);
@@ -223,6 +228,7 @@ class SellerCatalogController extends Controller
         $categories = Category::query()
             ->select(['id', 'title', 'slug', 'parent_id'])
             ->has('products')
+            ->orderBy('title')
             ->get();
 
         $category = Category::query()->findOrFail($id);

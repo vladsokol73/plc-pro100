@@ -29,6 +29,7 @@ class ProfileController extends Controller
         $categories = Category::query()
             ->select(['id', 'title', 'slug', 'parent_id'])
             ->has('products')
+            ->orderBy('title')
             ->get();
 
         if (auth()->check()) {
@@ -48,6 +49,7 @@ class ProfileController extends Controller
         $categories = Category::query()
             ->select(['id', 'title', 'slug', 'parent_id'])
             ->has('products')
+            ->orderBy('title')
             ->get();
 
         $user_id = auth()->check() ? auth()->user()->id : null;
