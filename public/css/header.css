@@ -9,9 +9,17 @@
 
 .navbar-container {
     width: 100%;
-    padding: 10px 10vw;
+    padding: 10px;
     display: flex;
     justify-content: space-between;
+}
+@media only screen and (min-width: 1483px) {
+    .navbar-container {
+        width: 100%;
+        padding: 10px 10vw;
+        display: flex;
+        justify-content: space-between;
+    }
 }
 
 .brand-logo {
@@ -161,7 +169,7 @@
     list-style: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1343px) {
     .navbar {
         opacity: 0.95;
     }
@@ -252,10 +260,11 @@
     }
 
     .brand-logo {
-        position: absolute;
-        top: 2px;
-        right: 15px;
+        position: relative;
         font-size: 2rem;
+        display: flex;
+        height: 50px;
+        padding-left: 30px;
     }
 
     .navbar-container input[type="checkbox"]:checked ~ .nav-items {
@@ -541,4 +550,23 @@ li:hover>ul {
 
 ion-icon {
     color: black;
+}
+
+.a-contact {
+    background: none;
+    color: var(--blue-color);
+    border: 0.15em solid var(--blue-color);
+    border-radius: 0.45em;
+    cursor: pointer;
+    padding: 0.35em 1em;
+    text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em var(--blue-color);
+    animation: text-flicker 7s linear infinite;
+    -webkit-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+    0 0 0.45em var(--blue-color);
+    -moz-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+    0 0 0.45em var(--blue-color);
+}
+
+.a-contact:hover {
+    background: var(--blue-color);
 }

@@ -15,8 +15,8 @@
             </div>
             <div class="form-group" style="margin-top: 10px">
                 <div>Новая картинка</div>
-                <input style="margin-top: 10px" type="file" class="form-control-file" name="image" id="image" multiple accept="image/*,image/jpeg"
-                       maxlength="255" value="{{ old('image') ?? '' }}">
+                <input style="margin-top: 10px" type="file" class="form-control-file" name="thumbnail" id="thumbnail" multiple accept="image/*,image/jpeg"
+                       maxlength="255" value="{{ old('thumbnail') ?? '' }}">
             </div>
             <button type="submit" class="btn btn-success">Сохранить</button>
         </form>

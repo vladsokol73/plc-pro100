@@ -1093,3 +1093,11 @@ select {
 .button-filter:hover {
     box-shadow: #41307c 0px 0px 20px 0px;
 }
+
+.btn-fresh {
+    margin-top: 20px;
+}
+
+.btn-fresh a {
+    color: black;
+}

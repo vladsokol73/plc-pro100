@@ -18,7 +18,7 @@
             </div>
             <div class="phoneInp">
                 <i class="fa-solid fa-phone"></i>
-                <input type="number" name="phone" id="phone" value="{{ old('phone') }}" placeholder="Телефон">
+                <input type="number"  name="phone" id="phone" value="{{ old('phone') }}" placeholder="Телефон">
             </div>
             <div class="queryInp">
                     <textarea name="message" id="message" cols="30" rows="5"

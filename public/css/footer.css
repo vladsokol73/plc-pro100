@@ -57,3 +57,13 @@ footer {
         margin-top: 8px;
     }
 }
+
+a[href^="tel"],[href^="mailto"] {
+    color: inherit; /* Inherit text color of parent element. */
+    text-decoration: none; /* Remove underline. */
+    /* Additional css `propery: value;` pairs here */
+}
+
+a[href^="tel"]:hover,[href^="mailto"]:hover {
+    color: #41307c;
+}

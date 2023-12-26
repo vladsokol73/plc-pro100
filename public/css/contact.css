@@ -83,18 +83,22 @@ textarea {
 .contact-btn:hover {
     background: var(--glow-color);
 }
-@media screen and (min-width:900px) {
-    form>div input {
-        width: 50vw;
-        text-align: left;
-        margin-left: 0;
-    }
-    textarea {
-        width: 50vw;
-    }
 
-
+form>div input {
+    width: 50vw;
+    text-align: left;
+    margin-left: 0;
 }
+textarea {
+    width: 50vw;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+textarea { resize: none; }
 
 .fa{
     color: #1f2937;

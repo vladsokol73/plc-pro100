@@ -13,7 +13,7 @@
                         Найдено: {{ $products->total() }} товаров
 
                         <div class="sort" x-data="{}">
-                            <span>Сортировать по</span>
+                            <span>Сортировать</span>
 
                             <form x-ref="sortForm" action="{{ route('catalog', $category) }}">
                                 <select name="sort" x-on:change="$refs.sortForm.submit()" class="form-select">
@@ -53,6 +53,7 @@
                 </li>
             @endif
         </ul>
+        <!-- ВСЕ ПРОДУКТЫ -->
         <section class="cd-gallery">
             <ul>
                 @each('components.product', $products, 'item')
@@ -60,7 +61,7 @@
                 <li class="gap"></li>
                 <li class="gap"></li>
             </ul>
-            <div class="cd-fail-message"><p>Не нашли что искали?<a href="{{route('contact')}}"> Напишите нам</a></p></div>
+            <div class="cd-fail-message"><p>Не нашли что искали?<a href="{{route('contact')}}"> Напишите нам</a> и мы рассчитаем стоимость нужного вам товара.</p></div>
             {{ $products->withQueryString()->links()}}
         </section> <!-- cd-gallery -->
 
@@ -109,40 +110,11 @@
                     </ul> <!-- cd-filter-content -->
                 </div> <!-- cd-filter-block -->
 
-
-                <div class="cd-filter-block">
-                    <h4>Категории</h4>
-
-                    <ul class="cd-filter-content cd-filters list">
-{{--                        <div class="category">--}}
-{{--                            @each('components.category', $categories, 'item')--}}
-{{--                        </div>--}}
-
-                        <ul>
-                            @foreach($categories as $category)
-                                @if($category->parent_id == null)
-                                    <li><span><a href="{{route('catalog', $category)}}">{{$category->title}}
-                                    </a></span><ion-icon name="chevron-forward-outline"></ion-icon>
-                                        <ul>
-                                            @foreach($categories as $subcategory)
-                                                @if($subcategory->parent_id == $category->id)
-                                                    <li><span><a href="{{route('catalog', $subcategory)}}">{{$subcategory->title}}</a></span></li>
-                                                @endif
-                                            @endforeach
-                                        </ul>
-                                    </li>
-                                @endif
-                            @endforeach
-                        </ul>
-
-                    </ul> <!-- cd-filter-content -->
-                </div> <!-- cd-filter-block -->
-
                 <div>
                     <button class="button-filter" type="submit">Поиск</button>
                 </div>
                 @if(@request('filters'))
-                    <div>
+                    <div class="btn-fresh">
                         <a href="{{ route('catalog', $category) }}">Сбросить фильтры</a>
                     </div>
                 @endif

@@ -186,6 +186,7 @@ body {
 
 .details{
     width: 50%;
+    text-align: center;
 }
 
 .details .product-brand{
@@ -203,6 +204,11 @@ body {
 .product-price{
     font-weight: 700;
     font-size: 30px;
+}
+
+.price-btn {
+    margin-top: 20px;
+    text-align: center;
 }
 
 .product-actual-price{
@@ -260,7 +266,6 @@ body {
 }
 
 .cart-btn{
-    margin-right: 2%;
     background: #383838;
     color: #fff;
 }
@@ -284,6 +289,7 @@ body {
     margin-top: 1rem;
     width: 20%;
     height: 40px;
+    background: var(--glow-color);
 }
 
 .btn-go-checkout:hover {
@@ -306,14 +312,19 @@ i{
 
 .top-bar, .bag {
     margin-top: 5px;
-    margin-left: 5px;
+    margin-left: 10px;
 }
 
 
 
 .btn-remove {
     color: black;
-    background: white;
+    background: var(--glow-color);
+}
+
+.btn-remove:hover {
+    color: #41307c;
+    cursor: pointer;
 }
 
 .cart-product {
@@ -375,4 +386,124 @@ i{
     margin-top: 17px;
     margin-left: 20px;
     opacity: 0.6;
+}
+
+.btn-admin {
+    margin-top: 8px;
+    background: none;
+    color: var(--glow-color);
+    border: 0.15em solid var(--glow-color);
+    border-radius: 0.45em;
+    cursor: pointer;
+    padding: 0.35em 1em;
+    text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em var(--glow-color);
+    -webkit-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+    0 0 0.45em var(--glow-color);
+    -moz-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+    0 0 0.45em var(--glow-color);
+}
+
+.btn-admin:hover {
+    background: var(--glow-color);
+    color: var(--blue-color);
+}
+
+.buttons {
+    margin: 20px;
+}
+
+.filter {
+    display:none;
+    visibility:hidden;
+}
+
+.checkbox-label {
+    background: black;
+    cursor: pointer;
+}
+
+.checkbox-label h3 {
+    scale: 2;
+    margin-top: 8px;
+    background: #081b29;
+    color: var(--glow-color);
+    border: 0.15em solid var(--glow-color);
+    border-radius: 0.45em;
+    cursor: pointer;
+    padding: 0.35em 1em;
+    text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em var(--glow-color);
+    -webkit-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+    0 0 0.45em var(--glow-color);
+    -moz-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+    0 0 0.45em var(--glow-color);
+}
+
+.button-filter {
+    background: none;
+}
+
+.brand {
+    padding: 10px;
+    text-align: center;
+    display: inline-block;
+}
+
+.categories {
+    padding: 10px;
+}
+
+.category-filter {
+    color: white;
+}
+
+.page-title {
+    padding: 10px;
+    text-align: center;
+}
+
+.contacts {
+    padding: 15px;
+}
+
+.contact {
+    padding: 15px;
+    display: inline-block;
+}
+
+.contact-p {
+    padding: 3px;
+}
+
+.table {
+    display: inline-block;
+    padding: 10px;
+    border-collapse: collapse;
+    /*убираем пустые промежутки между ячейками*/
+    text-align: center;
+    & td, & th, .finish {
+        border: 1px solid grey;
+        padding: 5px;
+    }
+}
+
+.orders {
+    margin-left: 20px;
+    text-align: center;
+    display: inline-block;
+    background: #081b29;
+    color: var(--glow-color);
+    border: 0.15em solid var(--glow-color);
+    border-radius: 0.45em;
+    cursor: pointer;
+    padding: 0.35em 1em;
+    text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em var(--glow-color);
+    -webkit-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+    0 0 0.45em var(--glow-color);
+    -moz-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+    0 0 0.45em var(--glow-color);
+}
+
+.order {
+    text-align: center;
+    align-items: center;
 }
