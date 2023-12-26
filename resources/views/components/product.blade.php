@@ -7,10 +7,10 @@
                 @csrf
                 @auth()
                     @if(auth()->user()->role != 'продавец')
-                        <button type="submit" class="card-btn">в корзину</button>
+                        <button type="submit" class="card-btn">В корзину</button>
                     @endif
                 @elseguest()
-                    <button type="submit" class="card-btn">в корзину</button>
+                    <button type="submit" class="card-btn">В корзину</button>
                 @endguest
             </form>
 

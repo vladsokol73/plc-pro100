@@ -1,11 +1,12 @@
 @extends("layouts.app")
 
-@section("title", $user->name ?? 'Каталог')
+@section("title", 'Админ панель')
 
 @section("content")
     <body>
     @auth()
         @if(auth()->user()->role == "продавец")
+            <div class="buttons">
             <button
                 onclick="window.location.href = '{{ route('addProduct') }}'"
                 type="button"
@@ -26,17 +27,31 @@
                 class="btn-admin">
                 Добавить категорию
             </button>
+            </div>
 
-            <div class="container1">
-                    <div class="cards1">
-                        @each('components.brand', $brands, 'item')
-                    </div>
+            <div class="buttons">
+                <button
+                    onclick="window.location.href = '{{ route('showBrands') }}'"
+                    type="button"
+                    class="btn-admin">
+                    Все производители
+                </button>
+
+                <button
+                    onclick="window.location.href = '{{ route('showCategories') }}'"
+                    type="button"
+                    class="btn-admin">
+                    Все категории
+                </button>
+
+                <button
+                    onclick="window.location.href = '{{ route('sellerContacts') }}'"
+                    type="button"
+                    class="btn-admin">
+                    Обратная связь
+                </button>
             </div>
         @endif
     @endauth
-
-    <div class="paginator">
-        {{ $products->withQueryString()->links('pagination::bootstrap-4')}}
-    </div>
     </body>
 @endsection

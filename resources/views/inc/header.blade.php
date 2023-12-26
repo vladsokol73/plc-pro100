@@ -7,7 +7,7 @@
                 <span class="line line2"></span>
                 <span class="line line3"></span>
             </div>
-            <a href="{{ route('home') }}"><img src="/storage/images/logotip.jpg" class="brand-logo" alt=""></a>
+            <a class="brand-logo" href="{{ route('home') }}"><img src="/storage/images/logotip.jpg" class="brand-logo" alt=""></a>
             <div class="nav-items">
                 <li>
                     <div class="search">
@@ -21,6 +21,7 @@
                 <li><a href="{{ route('catalog') }}">Каталог товаров</a></li>
                 @auth()
                     @if(auth()->user()->role == "покупатель")
+                        <li><a href="{{ route('showBrands') }}">Бренды</a></li>
                         <li><a href="{{ route('basket') }}"><img src="/storage/images/cart.png" alt=""></a></li>
 
                     @else
@@ -28,6 +29,7 @@
                     @endif
                 @endauth
                 @guest()
+                    <li><a href="{{ route('showBrands') }}">Бренды</a></li>
                     <li><a href="{{ route('basket') }}"><img src="/storage/images/cart.png" alt=""></a></li>
                 @endguest
 
@@ -48,7 +50,7 @@
                     <li><a href="{{ route('login') }}">Войти</a></li>
                     <li><a href="{{ route('register') }}">Зарегистрироваться</a></li>
                 @endauth
-                <li><a href="{{ route('contact') }}">Задать вопрос</a></li>
+                <li><a class="a-contact" href="{{ route('contact') }}">Задать вопрос</a></li>
             </div>
         </div>
     </nav>

@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+    <div class="order">
     <h1>Детали заказа</h1>
     <table class="table table-bordered" style="color: #ffffff">
         <tr>
@@ -20,8 +21,8 @@
             </tr>
         @endforeach
         <tr>
-            <th colspan="2" class="text-right">Итого</th>
-            <th>{{ $order->amount }}</th>
+            <th colspan="2" class="finish">Итого</th>
+            <th class="finish">{{ $order->amount }}</th>
         </tr>
     </table>
 
@@ -33,4 +34,5 @@
     @isset ($order->comment)
         <p>Комментарий: {{ $order->comment }}</p>
     @endisset
+    </div>
 @endsection

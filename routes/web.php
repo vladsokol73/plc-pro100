@@ -53,23 +53,27 @@ Route::controller(ProfileController::class)->group(function () {
 
     //Профиль продавца
     Route::get('seller/sold', 'sellerProfile')->name('sellerProfile');
+    Route::get('seller/contacts', 'sellerContacts')->name('sellerContacts');
+    Route::post('/contact/remove{id}', 'removeContact')->name('removeContact');
 });
 
-//Панель управления продуктами, брендами и категориями продавца
+//Панель управления обратной связью, продуктами, брендами и категориями продавца
 Route::controller(SellerCatalogController::class)->group(function () {
-    Route::get('/seller-catalog', 'show')->name('sellerCatalog');
+    Route::get('/admin-panel', 'show')->name('sellerCatalog');
     Route::get('/product-add', 'addProduct')->name('addProduct');
     Route::get('/edit-product/{id}', 'editProduct')->name('editProduct');
     Route::post('/product-save', 'saveProduct')->name('saveProduct');
     Route::post('/remove-product/{id}', 'removeProduct')->name('removeProduct');
     Route::post('/update-product/{id}', 'editProductSubmit')->name('editProductSubmit');
 
+    Route::get('/brands', 'showBrands')->name('showBrands');
     Route::get('/brand-add', 'addBrand')->name('addBrand');
     Route::get('/edit-brand/{id}', 'editBrand')->name('editBrand');
     Route::post('/brand-save', 'saveBrand')->name('saveBrand');
     Route::post('/remove-brand/{id}', 'removeBrand')->name('removeBrand');
     Route::post('/update-brand/{id}', 'editBrandSubmit')->name('editBrandSubmit');
 
+    Route::get('/categories', 'showCategories')->name('showCategories');
     Route::get('/category-add', 'addCategory')->name('addCategory');
     Route::get('/edit-category/{id}', 'editCategory')->name('editCategory');
     Route::post('/category-save', 'saveCategory')->name('saveCategory');
@@ -77,6 +81,7 @@ Route::controller(SellerCatalogController::class)->group(function () {
     Route::post('/update-category/{id}', 'editCategorySubmit')->name('editCategorySubmit');
 });
 
+//Обратная связь
 Route::controller(\App\Http\Controllers\ContactUsFormController::class)->group(function () {
     Route::get('/contact', 'contact')->name('contact');
     Route::post('/contact-save', 'SubmitForm')->name('contact-save');
