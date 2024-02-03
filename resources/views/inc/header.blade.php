@@ -7,8 +7,7 @@
                 <span class="line line2"></span>
                 <span class="line line3"></span>
             </div>
-            <a class="brand-logo" href="{{ route('home') }}"><img src="/storage/images/logotip.jpg" class="brand-logo"
-                                                                  alt=""></a>
+            <a class="brand-logo" href="{{ route('home') }}"><img src="/storage/images/logotip.jpg" class="brand-logo" alt=""></a>
             <div class="nav-items">
                 <li>
                     <div class="search">
@@ -56,63 +55,32 @@
         </div>
     </nav>
 
-    {{--    <ul class="links-container">--}}
-    {{--        <div class="dropdown list">--}}
-
-    {{--            <li class="link-item categories">--}}
-    {{--                <button class='glowing-btn'><span class='glowing-txt'>К<span--}}
-    {{--                            class='faulty-letter'>А</span>ТЕГОРИИ</span></button>--}}
-    {{--            </li>--}}
-
-    {{--            <div class="dropdown-content list">--}}
-    {{--                <ul>--}}
-    {{--                    @foreach($categories as $category)--}}
-    {{--                        @if($category->parent_id == null)--}}
-    {{--                            <li><span><a href="{{route('catalog', $category)}}">{{$category->title}}--}}
-    {{--                                    </a></span><ion-icon name="chevron-forward-outline"></ion-icon>--}}
-    {{--                            <ul>--}}
-    {{--                                @foreach($categories as $subcategory)--}}
-    {{--                                    @if($subcategory->parent_id == $category->id)--}}
-    {{--                                        <li><span><a href="{{route('catalog', $subcategory)}}">{{$subcategory->title}}</a></span></li>--}}
-    {{--                                    @endif--}}
-    {{--                                @endforeach--}}
-    {{--                            </ul>--}}
-    {{--                            </li>--}}
-    {{--                        @endif--}}
-    {{--                    @endforeach--}}
-    {{--                </ul>--}}
-    {{--            </div>--}}
-    {{--        </div>--}}
-    {{--    </ul>--}}
-
-
     <ul class="links-container">
-        <navigation>
-            <menu>
-                <menuitem id="categories">
-                    <button class='glowing-btn'><span class='glowing-txt'>К<span
-                                class='faulty-letter'>А</span>ТЕГОРИИ</span></button>
-                    <menu>
-                        @foreach($categories as $category)
-                            @if($category->parent_id == null)
+        <div class="dropdown list">
 
-                                <menuitem>
-                                    <a href="{{route('catalog', $category)}}">{{$category->title}}</a>
-                                    <menu>
-                                        @foreach($categories as $subcategory)
-                                            @if($subcategory->parent_id == $category->id)
-                                                <menuitem><a
-                                                        href="{{route('catalog', $subcategory)}}">{{$subcategory->title}}</a>
-                                                </menuitem>
-                                            @endif
-                                        @endforeach
-                                    </menu>
-                                </menuitem>
-                            @endif
-                        @endforeach
-                    </menu>
-                </menuitem>
-            </menu>
-        </navigation>
+            <li class="link-item categories">
+                <button class='glowing-btn'><span class='glowing-txt'>К<span
+                            class='faulty-letter'>А</span>ТЕГОРИИ</span></button>
+            </li>
+
+            <div class="dropdown-content list">
+                <ul>
+                    @foreach($categories as $category)
+                        @if($category->parent_id == null)
+                            <li><span><a href="{{route('catalog', $category)}}">{{$category->title}}
+                                    </a></span><ion-icon name="chevron-forward-outline"></ion-icon>
+                            <ul>
+                                @foreach($categories as $subcategory)
+                                    @if($subcategory->parent_id == $category->id)
+                                        <li><span><a href="{{route('catalog', $subcategory)}}">{{$subcategory->title}}</a></span></li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                            </li>
+                        @endif
+                    @endforeach
+                </ul>
+            </div>
+        </div>
     </ul>
 </header>
