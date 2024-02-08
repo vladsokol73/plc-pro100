@@ -648,6 +648,7 @@ menu menuitem a { white-space:nowrap; display:block; }
 
 menuitem:hover > menu {
     pointer-events:initial;
+    z-index: 9;
 }
 menuitem:hover > menu > menuitem,
 menu:hover > menuitem{
@@ -660,11 +661,6 @@ navigation > menu > menuitem menuitem menu {
 /* User Styles Below Not Required */
 /* User Styles Below Not Required */
 /* User Styles Below Not Required */
-
-navigation {
-    margin-top: 40px;
-    margin-left: 40px;
-}
 
 navigation a {
     background: var(--blue-color);
@@ -699,7 +695,6 @@ navigation menuitem > menu > menuitem > a + menu:after{
     content: '';
     position:absolute;
     border:10px solid transparent;
-    border-left: 10px solid white;
     top: 20px;
     left:-180px;
     transition: opacity 0.6, transform 0s;
