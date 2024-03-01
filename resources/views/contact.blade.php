@@ -24,6 +24,7 @@
                     <textarea name="message" id="message" cols="30" rows="5"
                               placeholder="Ваше сообщение" minlength="10" maxlength="255"></textarea>
             </div>
+            <div class="g-recaptcha mt-4" data-sitekey={{config('services.recaptcha.key')}}></div>
             <div class="submitBtn">
                 <button class="contact-btn" id="btn" type="submit">Отправить</button>
             </div>

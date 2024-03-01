@@ -250,7 +250,7 @@ class SellerCatalogController extends Controller
                 } else {
                     Brand::query()->create($request->all());
                 }
-                return redirect()->route('sellerCatalog');
+                return redirect()->route('showBrands');
             } else {
                 abort(403);
             }
@@ -272,7 +272,7 @@ class SellerCatalogController extends Controller
                 $format = str_replace('/storage/', '', Brand::query()->findOrFail($id)->thumbnail);
                 Storage::delete($format);
                 Brand::query()->findOrFail($id)->delete();
-                return redirect()->route('sellerCatalog');
+                return redirect()->route('showBrands');
             } else {
                 abort(403);
             }
@@ -324,7 +324,7 @@ class SellerCatalogController extends Controller
                     $data['thumbnail'] = $path;
                 }
                 Brand::query()->findOrFail($id)->update($data);
-                return redirect()->route('sellerCatalog');
+                return redirect()->route('showBrands');
             } else {
                 abort(403);
             }
@@ -363,7 +363,7 @@ class SellerCatalogController extends Controller
         if (auth()->check()) {
             if (auth()->user()->id == 1) {
                 $category = Category::query()->create($request->all());
-                return redirect()->route('sellerCatalog');
+                return redirect()->route('showCategories');
             } else {
                 abort(403);
             }
@@ -383,7 +383,7 @@ class SellerCatalogController extends Controller
         if (auth()->check()) {
             if (auth()->user()->id == 1) {
                 Category::query()->findOrFail($id)->delete();
-                return redirect()->route('sellerCatalog');
+                return redirect()->route('showCategories');
             } else {
                 abort(403);
             }
@@ -424,7 +424,7 @@ class SellerCatalogController extends Controller
         if (auth()->check()) {
             if (auth()->user()->id == 1) {
                 Category::query()->findOrFail($id)->update($request->all());
-                return redirect()->route('sellerCatalog');
+                return redirect()->route('showCategories');
             } else {
                 abort(403);
             }
