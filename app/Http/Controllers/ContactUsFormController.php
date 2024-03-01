@@ -27,11 +27,6 @@ class ContactUsFormController extends Controller
     // Store Contact Form data
     public function SubmitForm(Request $request)
     {
-        $recaptcha_response = $request->input('g-recaptcha-response');
-
-        if (is_null($recaptcha_response)) {
-            return redirect()->back()->with('status', 'Please Complete the Recaptcha to proceed');
-        }
         // Form validation
         $this->validate($request, [
             'name' => 'required',
