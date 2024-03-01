@@ -3,7 +3,9 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BasketController;
 use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\ContactUsFormController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\mailController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SellerCatalogController;
@@ -82,7 +84,7 @@ Route::controller(SellerCatalogController::class)->group(function () {
 });
 
 //Обратная связь
-Route::controller(\App\Http\Controllers\ContactUsFormController::class)->group(function () {
+Route::controller(ContactUsFormController::class)->group(function () {
     Route::get('/contact', 'contact')->name('contact');
     Route::post('/contact-save', 'SubmitForm')->name('contact-save');
 });

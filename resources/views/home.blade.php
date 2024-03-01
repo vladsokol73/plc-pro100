@@ -45,6 +45,7 @@
             <button class="button-write-us" onclick='location.href = "{{ route('contact') }}";'>Написать нам</button>
         </div>
     </section>
+    <script src="js/home.js"></script>
     </body>
     @include("inc.footer")
 @endsection
