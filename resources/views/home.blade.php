@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="yandex-verification" content="7ff4569a97fed783" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    {!! htmlScriptTagJsApi() !!}
     <link rel="stylesheet" href="/css/home.css">
     <link rel="stylesheet" href="/css/header.css">
     <link rel="shortcut icon" href="{{ url("/storage/images/icon.png") }}">
     <title>@yield("title")</title>
 
     <!-- Yandex.Metrika counter -->
+    <meta name="yandex-verification" content="7ff4569a97fed783" />
     <script type="text/javascript" >
         (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
             m[i].l=1*new Date();

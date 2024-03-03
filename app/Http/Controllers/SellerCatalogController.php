@@ -5,15 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
-use App\Models\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use phpDocumentor\Reflection\Types\Null_;
-use function Webmozart\Assert\Tests\StaticAnalysis\null;
 
 class SellerCatalogController extends Controller
 {
@@ -36,7 +33,8 @@ class SellerCatalogController extends Controller
         }
     }
 
-    public function showBrands() {
+    public function showBrands()
+    {
         $categories = Category::query()
             ->select(['id', 'title', 'slug', 'parent_id'])
             ->orderBy('title')
@@ -48,7 +46,8 @@ class SellerCatalogController extends Controller
         return view('catalog.brands', ['categories' => $categories, 'brands' => $brands]);
     }
 
-    public function showCategories() {
+    public function showCategories()
+    {
         $categories = Category::query()
             ->select(['id', 'title', 'slug', 'parent_id'])
             ->orderBy('title')
@@ -56,7 +55,7 @@ class SellerCatalogController extends Controller
 
         if (auth()->check()) {
             if (auth()->user()->id == 1) {
-        return view('catalog.categories', ['categories' => $categories]);
+                return view('catalog.categories', ['categories' => $categories]);
             } else {
                 abort(403);
             }
@@ -118,6 +117,48 @@ class SellerCatalogController extends Controller
         }
     }
 
+    //сохр. ред. продукт
+    public function editProductSubmit(Request $request, $id)
+    {
+        $categories = Category::query()
+            ->select(['id', 'title', 'slug', 'parent_id'])
+            ->has('products')
+            ->orderBy('title')
+            ->get();
+        if (auth()->check()) {
+            if (auth()->user()->id == 1) {
+                $product = Product::query()->findOrFail($id);
+                //если передали новую фотку-обновляем
+                if ($request->hasFile('thumbnail')) {
+                    $format = str_replace('/storage/', '', Product::query()->findOrFail($id)->image);
+                    Storage::delete($format);
+                    $name = 'public/images/products/' . Str::random(6) . '.jpg';
+                    $path = '/storage/' . $name;
+                    Storage::put(
+                        $name,
+                        file_get_contents($request->file('thumbnail'))
+                    );
+                    $product->update(['thumbnail' => $path]);
+                    $request->request->remove('thumbnail');
+                }
+
+                $product->categories()->detach();
+                $product->categories()->attach(Category::query()->findOrFail($request->get('category_id')));
+                if ($request->get('subcategory_id') != null) {
+                    $product->categories()->attach(Category::query()->findOrFail($request->get('subcategory_id')));
+                }
+                $request->request->remove('category_id');
+                $request->request->remove('subcategory_id');
+                $product->update($request->all());
+                return redirect()->route('catalog');
+            } else {
+                abort(403);
+            }
+        } else {
+            return view('auth.login', ['categories' => $categories]);
+        }
+    }
+
     //удаление продукта
     public function removeProduct(Request $request, $id)
     {
@@ -160,52 +201,6 @@ class SellerCatalogController extends Controller
         }
     }
 
-    //сохр. ред. продукт
-    public function editProductSubmit(Request $request, $id)
-    {
-        $categories = Category::query()
-            ->select(['id', 'title', 'slug', 'parent_id'])
-            ->has('products')
-            ->orderBy('title')
-            ->get();
-        if (auth()->check()) {
-            if (auth()->user()->id == 1) {
-
-                //если передали новую фотку-обновляем
-                if ($request->hasFile('thumbnail')) {
-                    $format = str_replace('/storage/', '', Product::query()->findOrFail($id)->image);
-                    Storage::delete($format);
-                    $name = 'public/images/products/' . Str::random(6) . '.jpg';
-                    $path = '/storage/' . $name;
-                    Storage::put(
-                        $name,
-                        file_get_contents($request->file('thumbnail'))
-                    );
-                    Product::query()->findOrFail($id)->update(['thumbnail' => $path]);
-                    $request->request->remove('thumbnail');
-                }
-                $category = Category::query()->findOrFail($request->get('category_id'));
-                if ($request->get('subcategory_id') != null) {
-                    $subcategory = Category::query()->findOrFail($request->get('subcategory_id'));
-                } else {
-                    $subcategory = null;
-                }
-                $request->request->remove('category_id');
-                $request->request->remove('subcategory_id');
-                $product = Product::query()->findOrFail($id)->update($request->all());
-                $product->categories()->attach($category);
-                if ($subcategory != null) {
-                    $product->categories()->attach($subcategory);
-                }
-                return redirect()->route('sellerCatalog');
-            } else {
-                abort(403);
-            }
-        } else {
-            return view('auth.login', ['categories' => $categories]);
-        }
-    }
-
     //страница добавления бренда
     public function addBrand(Request $request)
     {
@@ -235,7 +230,7 @@ class SellerCatalogController extends Controller
             ->get();
         if (auth()->check()) {
             if (auth()->user()->id == 1) {
-                if ($request->hasFile('thumbnail')){
+                if ($request->hasFile('thumbnail')) {
                     $name = 'public/images/brands/' . Str::random(6) . '.jpg';
                     $path = '/storage/' . $name;
                     Storage::put(
