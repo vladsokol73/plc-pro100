@@ -18,6 +18,10 @@
                        required maxlength="10" value="{{ $product->price }}">
             </div>
             <div class="form-group" style="margin-top: 10px">
+                <input type="text" class="form-control" name="article" placeholder="Стоимость"
+                       required maxlength="30" value="{{ $product->article }}">
+            </div>
+            <div class="form-group" style="margin-top: 10px">
                 <input type="text" class="form-control" name="description" placeholder="Описание"
                        required maxlength="255" value="{{ $product->description }}">
             </div>
@@ -30,6 +34,7 @@
             <div class="form-group" style="margin-top: 10px">
                 <p>Бренд</p>
                 <select id="brand_id" name="brand_id">
+                    <option value="{{null}}">Прежняя</option>
                     @foreach($brands as $item)
                         <option value="{{$item->id}}">{{ $item->title }}</option>
                     @endforeach
