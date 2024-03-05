@@ -130,7 +130,7 @@ class SellerCatalogController extends Controller
                 $product = Product::query()->findOrFail($id);
                 //если передали новую фотку-обновляем
                 if ($request->hasFile('thumbnail')) {
-                    $format = str_replace('/storage/', '', Product::query()->findOrFail($id)->image);
+                    $format = str_replace('/storage/', '', Product::query()->findOrFail($id)->thumbnail);
                     Storage::delete($format);
                     $name = 'public/images/products/' . Str::random(6) . '.jpg';
                     $path = '/storage/' . $name;
@@ -141,15 +141,16 @@ class SellerCatalogController extends Controller
                     $product->update(['thumbnail' => $path]);
                     $request->request->remove('thumbnail');
                 }
-
-                $product->categories()->detach();
-                $product->categories()->attach(Category::query()->findOrFail($request->get('category_id')));
+                if ($request->get('category_id') != null) {
+                    $product->categories()->detach();
+                    $product->categories()->attach(Category::query()->findOrFail($request->get('category_id')));
+                }
                 if ($request->get('subcategory_id') != null) {
                     $product->categories()->attach(Category::query()->findOrFail($request->get('subcategory_id')));
                 }
                 $request->request->remove('category_id');
                 $request->request->remove('subcategory_id');
-                $product->update($request->all());
+                $product->update($request->except('thumbnail'));
                 return redirect()->route('catalog');
             } else {
                 abort(403);

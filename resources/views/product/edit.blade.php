@@ -39,6 +39,7 @@
             <div class="form-group" style="margin-top: 10px">
                 <p>Категория</p>
                 <select id="category_id" name="category_id">
+                    <option value="{{null}}">Прежняя</option>
                     @foreach($categories as $item)
                         @if($item->parent_id == null)
                             <option value="{{$item->id}}">{{ $item->title }}</option>
