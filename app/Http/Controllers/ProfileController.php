@@ -86,7 +86,7 @@ class ProfileController extends Controller
         if (auth()->check()) {
             if (auth()->user()->id == 1) {
                 Contact::query()->findOrFail($id)->delete();
-                return redirect()->route('sellerCatalog');
+                return redirect()->route('sellerContacts');
             } else {
                 abort(403);
             }
