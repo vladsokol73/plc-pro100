@@ -141,6 +141,9 @@ class SellerCatalogController extends Controller
                     $product->update(['thumbnail' => $path]);
                     $request->request->remove('thumbnail');
                 }
+                if ($request->get('brand_id') == null) {
+                    $request->request->remove('brand_id');
+                }
                 if ($request->get('category_id') != null) {
                     $product->categories()->detach();
                     $product->categories()->attach(Category::query()->findOrFail($request->get('category_id')));
