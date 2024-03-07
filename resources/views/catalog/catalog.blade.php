@@ -1,7 +1,5 @@
 @extends("layouts.catalog")
 
-@section("title", $user->name ?? 'Каталог')
-
 @section("content")
     <body>
 

@@ -1,6 +1,8 @@
 @extends("layouts.app")
 
-@section("title", $product->title)
+@section("title")
+Купить {{ $product->title }} по самой выгодной цене с доставкой по России
+@endsection
 
 @section("content")
     <form method="post" action="{{ route('basketAdd', ['id' => $product->id]) }}">
