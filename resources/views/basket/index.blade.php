@@ -87,6 +87,7 @@
     @endif
     <div class="help">
         <p>Нужна помощь? Звоните бесплатно <a href="tel:+79297949431">+7(929)794-94-31</a></p>
+        <p>Наша почта - <a href="mailto:burdin100@mail.ru">burdin100@mail.ru</a></p>
     </div>
 @endsection
 
