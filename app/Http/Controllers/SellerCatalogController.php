@@ -94,6 +94,22 @@ class SellerCatalogController extends Controller
                     $name,
                     file_get_contents($request->file('thumbnail'))
                 );
+
+                $file_name = '';
+                $file_path = '';
+                if ($request->hasFile('file')) {
+                    $file_name = 'public/documents/products/' . $request->file('file')->getClientOriginalName();
+                    $file_path = '/storage/' . $file_name;
+                    Storage::put(
+                        $file_name,
+                        file_get_contents($request->file('file'))
+                    );
+
+                } else {
+                    $file_path = null;
+                }
+                $request->request->remove('file');
+
                 if ($request->get('subcategory_id') != null) {
                     $subcategories = Category::query()->findOrFail($request->get('subcategory_id'));
                 } else {
@@ -101,8 +117,9 @@ class SellerCatalogController extends Controller
                 }
                 $request->request->remove('category_id');
                 $request->request->remove('subcategory_id');
+
                 $product = Product::query()->create(
-                    ['user_id' => $user_id, 'thumbnail' => $path] + $request->all()
+                    ['user_id' => $user_id, 'thumbnail' => $path, 'file' => $file_path] + $request->all()
                 );
                 $product->categories()->attach($categories);
                 if ($subcategories != null) {
@@ -141,6 +158,20 @@ class SellerCatalogController extends Controller
                     $product->update(['thumbnail' => $path]);
                     $request->request->remove('thumbnail');
                 }
+
+                if ($request->hasFile('file')) {
+                    $format = str_replace('/storage/', '', Product::query()->findOrFail($id)->file);
+                    Storage::delete($format);
+                    $name = 'public/documents/products/' . $request->file('file')->getClientOriginalName();
+                    $path = '/storage/' . $name;
+                    Storage::put(
+                        $name,
+                        file_get_contents($request->file('file'))
+                    );
+                    $product->update(['file' => $path]);
+                    $request->request->remove('file');
+                }
+
                 if ($request->get('brand_id') == null) {
                     $request->request->remove('brand_id');
                 }
@@ -153,7 +184,7 @@ class SellerCatalogController extends Controller
                 }
                 $request->request->remove('category_id');
                 $request->request->remove('subcategory_id');
-                $product->update($request->except('thumbnail'));
+                $product->update($request->except('thumbnail', 'file'));
                 return redirect()->route('catalog');
             } else {
                 abort(403);
