@@ -32,6 +32,11 @@
             </div>
 
             <div class="form-group" style="margin-top: 10px">
+                <div>Файл с тех. документацией</div>
+                <input style="margin-top: 10px" type="file" class="form-control-file" name="file" id="file">
+            </div>
+
+            <div class="form-group" style="margin-top: 10px">
                 <p>Бренд</p>
                 <select id="brand_id" name="brand_id">
                     <option value="{{null}}">Прежняя</option>

@@ -20,6 +20,7 @@
                         {{ $category->title }}
                     @endforeach</p>
                 <p>Производитель: {{ $product->brand->title }}</p>
+                <p><a href="{{ $product->filePath() }}">Документация: </a></p>
                 <div class="price-btn">
                     <span class="product-price">{{ $product->price }} &#8381; </span>
                     {{--            <span class="product-actual-price">$200</span>--}}

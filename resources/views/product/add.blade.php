@@ -32,7 +32,12 @@
                 <div>Ваша картинка</div>
                 <input style="margin-top: 10px" type="file" class="form-control-file" name="thumbnail" id="thumbnail"
                        multiple accept="image/*,image/jpeg"
-                       required maxlength="255" value="{{ old('thumbnail') ?? '' }}">
+                       required maxlength="255">
+            </div>
+
+            <div class="form-group" style="margin-top: 10px">
+                <div>Файл с тех. документацией</div>
+                <input style="margin-top: 10px" type="file" class="form-control-file" name="file" id="file">
             </div>
 
             <div class="form-group" style="margin-top: 10px">

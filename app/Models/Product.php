@@ -24,7 +24,8 @@ class Product extends Model
         "user_id",
         "thumbnail",
         'sorting',
-        'article'
+        'article',
+        'file'
     ];
 
     protected function thumbnailDir(): string
@@ -61,6 +62,11 @@ class Product extends Model
                 request('filters.price.to', 999999)
             ]);
         });
+    }
+
+    public function filePath(): string
+    {
+        return str_replace('public/', '', $this->file);
     }
 
     public function scopeSorted(Builder $query)
