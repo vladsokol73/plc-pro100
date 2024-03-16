@@ -1,7 +1,7 @@
 @extends("layouts.app")
 
 @section("title")
-Купить {{ $product->title }} по самой выгодной цене с доставкой по России
+    Купить {{ $product->title }} по самой выгодной цене с доставкой по России
 @endsection
 
 @section("content")
@@ -20,7 +20,9 @@
                         {{ $category->title }}
                     @endforeach</p>
                 <p>Производитель: {{ $product->brand->title }}</p>
-                <p><a href="{{ $product->filePath() }}">Документация: </a></p>
+                @if($product->file != null)
+                    <p><a href="{{ $product->filePath() }}">Документация: </a></p>
+                @endif
                 <div class="price-btn">
                     <span class="product-price">{{ $product->price }} &#8381; </span>
                     {{--            <span class="product-actual-price">$200</span>--}}
