@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/home.css">
     <link rel="stylesheet" href="/css/header.css">
     <link rel="shortcut icon" href="{{ url("/storage/images/icon.png") }}">
-    <title>@yield("title")</title>
+    <title>PLC_Pro-100 - Продукты Промышленной Автоматизации по самой выгодной цене с доставкой по России</title>
 
     <!-- Yandex.Metrika counter -->
     <meta name="yandex-verification" content="7ff4569a97fed783" />
@@ -31,9 +31,6 @@
 
 </html>
 
-@section("title")
-    Продукция для промышленной автоматизации - PLC_Pro-100
-@endsection
 @include("inc.header")
 @section("content")
     <body>
