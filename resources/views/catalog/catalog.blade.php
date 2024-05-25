@@ -1,4 +1,14 @@
 @extends("layouts.catalog")
+<head>
+    <meta name="description" content="Вы можете выбрать {{ $category->title }} по приемлемой цене. Товары известных производителей SEW EURODRIVE, Kromschroder, Honeywell, SIEMENS, ASM, CHINA, DEMAG. Все средства разработки, конструкторы, модули содержат подробные описания, технические характеристики, фотографии, цены. Свыше 400 моделей в ассортименте для вас. Доставка по всей России.">
+
+    <meta name="keywords" content="{{ $category->title }}, SEW EURODRIVE, Kromschroder, Honeywell, SIEMENS, ASM, CHINA, DEMAG, PEPPERL+FUCHS, ENDRESS+HAUSER, WAGO, BAUMER, CRYDOM, GESTRA, PARKER, Phoenix Contact, Ebmpapst, DANFOSS, TURCK, DOS POWER SUPPLY, Autonics, SICK">
+</head>
+
+@section("title")
+    {{ $category->title }} | купить в розницу и оптом
+@endsection
+
 
 @section("content")
     <body>

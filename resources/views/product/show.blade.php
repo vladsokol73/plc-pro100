@@ -1,8 +1,12 @@
 @extends("layouts.app")
 
 @section("title")
-    Купить {{ $product->title }} по самой выгодной цене с доставкой по России
+    {{ $product->title }}, {{ $product->brand->title }} | купить в розницу и оптом
 @endsection
+<head>
+    <meta name="description" content="{{ $product->brand->title }}, {{ $product->title }}, {{ $product->description }}">
+    <meta name="keywords" content="{{ $product->brand->title }}, {{ $product->title }}">
+</head>
 
 @section("content")
     <form method="post" action="{{ route('basketAdd', ['id' => $product->id]) }}">
