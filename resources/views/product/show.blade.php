@@ -1,11 +1,11 @@
 @extends("layouts.app")
 
 @section("title")
-    {{ $product->title }}, {{ $product->brand->title }} | купить в розницу и оптом
+    {{ $product->title }}, {{ $product->article }}, {{ $product->brand->title }} | купить в розницу и оптом
 @endsection
 <head>
-    <meta name="description" content="{{ $product->brand->title }}, {{ $product->title }}, {{ $product->description }}">
-    <meta name="keywords" content="{{ $product->brand->title }}, {{ $product->title }}">
+    <meta name="description" content="{{ $product->brand->title }}, {{ $product->title }}, {{ $product->article }}, {{ $product->description }}">
+    <meta name="keywords" content="{{ $product->brand->title }}, {{ $product->title }}, {{ $product->article }}">
 </head>
 
 @section("content")
