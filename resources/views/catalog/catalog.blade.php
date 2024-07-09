@@ -1,13 +1,12 @@
 @extends("layouts.catalog")
-<head>
-    <meta name="description" content="Вы можете выбрать {{ $category->title }} по приемлемой цене. Товары известных производителей SEW EURODRIVE, Kromschroder, Honeywell, SIEMENS, ASM, CHINA, DEMAG. Все средства разработки, конструкторы, модули содержат подробные описания, технические характеристики, фотографии, цены. Свыше 400 моделей в ассортименте для вас. Доставка по всей России.">
-
-    <meta name="keywords" content="{{ $category->title }}, SEW EURODRIVE, Kromschroder, Honeywell, SIEMENS, ASM, CHINA, DEMAG, PEPPERL+FUCHS, ENDRESS+HAUSER, WAGO, BAUMER, CRYDOM, GESTRA, PARKER, Phoenix Contact, Ebmpapst, DANFOSS, TURCK, DOS POWER SUPPLY, Autonics, SICK">
-</head>
 
 @section("title")
     {{ $category->title }} | купить в розницу и оптом
 @endsection
+
+<head>
+    <meta name="description" content="Вы можете выбрать {{ $category->title }} по приемлемой цене. Товары известных производителей SEW EURODRIVE, Kromschroder, Honeywell, SIEMENS, ASM, CHINA, DEMAG. Все средства разработки, конструкторы, модули содержат подробные описания, технические характеристики, фотографии, цены. Свыше 400 моделей в ассортименте для вас. Доставка по всей России.">
+</head>
 
 
 @section("content")
@@ -20,27 +19,27 @@
                     <div class="total">
                         Найдено: {{ $products->total() }} товаров
 
-                        <div class="sort" x-data="{}">
-                            <span>Сортировать</span>
+{{--                        <div class="sort" x-data="{}">--}}
+{{--                            <span>Сортировать</span>--}}
 
-                            <form x-ref="sortForm" action="{{ route('catalog', $category) }}">
-                                <select name="sort" x-on:change="$refs.sortForm.submit()" class="form-select">
-                                    <option value="" class="text-dark">по умолчанию</option>
-                                    <option @selected(request('sort') === 'price') value="price" class="text-dark">от
-                                        дешевых к
-                                        дорогим
-                                    </option>
-                                    <option @selected(request('sort') === '-price') value="-price" class="text-dark">от
-                                        дорогих
-                                        к
-                                        дешевым
-                                    </option>
-                                    <option @selected(request('sort') === 'title') value="title" class="text-dark">
-                                        наименованию
-                                    </option>
-                                </select>
-                            </form>
-                        </div>
+{{--                            <form x-ref="sortForm" action="{{ route('catalog', $category) }}">--}}
+{{--                                <select name="sort" x-on:change="$refs.sortForm.submit()" class="form-select">--}}
+{{--                                    <option value="" class="text-dark">по умолчанию</option>--}}
+{{--                                    <option @selected(request('sort') === 'price') value="price" class="text-dark">от--}}
+{{--                                        дешевых к--}}
+{{--                                        дорогим--}}
+{{--                                    </option>--}}
+{{--                                    <option @selected(request('sort') === '-price') value="-price" class="text-dark">от--}}
+{{--                                        дорогих--}}
+{{--                                        к--}}
+{{--                                        дешевым--}}
+{{--                                    </option>--}}
+{{--                                    <option @selected(request('sort') === 'title') value="title" class="text-dark">--}}
+{{--                                        наименованию--}}
+{{--                                    </option>--}}
+{{--                                </select>--}}
+{{--                            </form>--}}
+{{--                        </div>--}}
                     </div>
                 </ul> <!-- cd-filters -->
             </div> <!-- cd-tab-filter -->
@@ -76,26 +75,26 @@
         <div class="cd-filter">
             <form action="{{ route('catalog', $category) }}" method="get">
 
-                <div class="cd-filter-block">
-                    <h4>Цена</h4>
-                    <div class="cd-filter-content">
-                        <span class="from">От, ₽</span>
-                        <span class="to">До, ₽</span>
-                        <div class="cost-filter">
-                            <input name="filters[price][from]"
-                                   value="{{ request('filters.price.from', 0) }}"
-                                   type="number"
-                                   class="price-from"
-                                   placeholder="От">
-                            <span>-</span>
-                            <input name="filters[price][to]"
-                                   value="{{ request('filters.price.to', 999999) }}"
-                                   type="number"
-                                   class="price-to"
-                                   placeholder="До">
-                        </div>
-                    </div> <!-- cd-filter-content -->
-                </div> <!-- cd-filter-block -->
+{{--                <div class="cd-filter-block">--}}
+{{--                    <h4>Цена</h4>--}}
+{{--                    <div class="cd-filter-content">--}}
+{{--                        <span class="from">От, ₽</span>--}}
+{{--                        <span class="to">До, ₽</span>--}}
+{{--                        <div class="cost-filter">--}}
+{{--                            <input name="filters[price][from]"--}}
+{{--                                   value="{{ request('filters.price.from', 0) }}"--}}
+{{--                                   type="number"--}}
+{{--                                   class="price-from"--}}
+{{--                                   placeholder="От">--}}
+{{--                            <span>-</span>--}}
+{{--                            <input name="filters[price][to]"--}}
+{{--                                   value="{{ request('filters.price.to', 999999) }}"--}}
+{{--                                   type="number"--}}
+{{--                                   class="price-to"--}}
+{{--                                   placeholder="До">--}}
+{{--                        </div>--}}
+{{--                    </div> <!-- cd-filter-content -->--}}
+{{--                </div> <!-- cd-filter-block -->--}}
 
                 <div class="cd-filter-block">
                     <h4>Бренды</h4>

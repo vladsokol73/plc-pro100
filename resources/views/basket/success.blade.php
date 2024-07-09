@@ -14,19 +14,19 @@
         <tr>
             <th>№</th>
             <th>Наименование</th>
-            <th>Цена</th>
+{{--            <th>Цена</th>--}}
         </tr>
         @foreach($order->items as $item)
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $item->title }}</td>
-                <td>{{ $item->price }}</td>
+{{--                <td>{{ $item->price }}</td>--}}
             </tr>
         @endforeach
-        <tr>
-            <th colspan="2" class="text-right">Итого</th>
-            <th>{{ $order->amount }}</th>
-        </tr>
+{{--        <tr>--}}
+{{--            <th colspan="2" class="text-right">Итого</th>--}}
+{{--            <th>{{ $order->amount }}</th>--}}
+{{--        </tr>--}}
     </table>
 
     <h2>Ваши данные</h2>

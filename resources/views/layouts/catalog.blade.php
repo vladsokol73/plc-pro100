@@ -23,8 +23,7 @@
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-
-    <meta name="description" content="Вы можете выбрать дисплеи и индикаторы по приемлемой цене. Товары известных производителей Waveshare, Winstar, 4D SYSTEMS, mikroElektronika. Все средства разработки, конструкторы, модули содержат подробные описания, технические характеристики, фотографии, цены. Свыше 400 моделей в ассортименте для вас. Доставка по всей России, доступен самовывоз.">
+    <meta name="keywords" content="автоматизация, электроника, газовое оборудование, микросхемы, гидравлика, датчик, контроллер, блок питания, коммутатор, реле, пневматика, привод, тормоз, разъем, china, siemens, wago, sew">
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript" >
         (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
