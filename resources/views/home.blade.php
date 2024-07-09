@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="{{ url("/storage/images/icon.png") }}">
     <title>PLC Pro100 - интернет-магазин приборов и электронных компонентов</title>
     <meta name="description" content="PLC Pro100 - розничная и мелкооптовая продажа измерительных приборов, электронных компонентов, паяльного оборудования, инструментов, средств разработки и отладки, домашней техники и электроники, сопутствующих товаров">
-    <meta name="keywords" content="электроника, радиодетали, радиоэлектроника, микросхемы, транзисторы, диоды, конденсаторы, резисторы, индуктивности, трансформаторы, светодиоды, лампы, индикаторы, дисплеи, датчики, реле, разъемы, кнопки, переключатели, провода, кабели, измерительная техника, измерительные приборы, мультиметры, осциллографы, паяльники, паяльные станции, инструменты, электродрели, батарейки, аккумуляторы, программаторы, компьютеры, Arduino, Fluke, Epcos, Tektronix, Mean Well, Ersa, Texas Instruments, ST Microelectronics, Connfly, Infineon, Analog Devices, Vishay, Microchip, TE Connectivity, Maxim, IR, Murata">
+    <meta name="keywords" content="автоматизация, электроника, газовое оборудование, микросхемы, гидравлика, датчик, контроллер, блок питания, коммутатор, реле, пневматика, привод, тормоз, разъем, china, siemens, wago, sew">
     <!-- Yandex.Metrika counter -->
     <meta name="yandex-verification" content="7ff4569a97fed783" />
     <script type="text/javascript" >

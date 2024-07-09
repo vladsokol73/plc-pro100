@@ -29,7 +29,7 @@
             <h2 class="product-brand">Название: {{ $item->title }}</h2>
             <p class="product-short-des">артикул: {{ $item->article }}</p>
             <p class="product-short-des">производитель: {{ $item->brand->title }}</p>
-            <span class="price">{{ $item->price }} &#8381;</span>
+{{--            <span class="price">{{ $item->price }} &#8381;</span>--}}
 {{--            <span class="actual-price"></span>--}}
             @auth()
                 @if(auth()->user()->role == 'продавец')

@@ -18,6 +18,7 @@
     <link rel="shortcut icon" href="{{ url("/storage/images/icon.png") }}">
 
     <title>@yield("title")</title>
+    <meta name="keywords" content="автоматизация, электроника, газовое оборудование, микросхемы, гидравлика, датчик, контроллер, блок питания, коммутатор, реле, пневматика, привод, тормоз, разъем, china, siemens, wago, sew">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
