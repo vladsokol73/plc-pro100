@@ -28,7 +28,7 @@
                     <p><a href="{{ $product->filePath() }}">Документация: </a></p>
                 @endif
                 <div class="price-btn">
-{{--                    <span class="product-price">{{ $product->price }} &#8381; </span>--}}
+                    <span class="product-price">Цена по запросу</span>
                     {{--            <span class="product-actual-price">$200</span>--}}
                     {{--            <span class="product-discount">( 50% off )</span>--}}
 
