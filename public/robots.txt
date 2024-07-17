@@ -1,11 +1,12 @@
 User-agent: *
+
 Disallow: /login
 Disallow: /register
 Disallow: /logout
-Disallow: /storage
-Disallow: /basket
-Disallow: /user
-Disallow: /seller
+Disallow: /storage*
+Disallow: /basket*
+Disallow: /user*
+Disallow: /seller*
 Disallow: admin-panel
 Disallow: product-add
 Disallow: edit-product
@@ -24,11 +25,5 @@ Disallow: remove-category
 Disallow: update-category
 Disallow: contact-save
 Disallow: contact
-Allow: *.jpg
-Allow: *.JPG
-Allow: *.jpeg
-Allow: *.JPEG
-Allow: *.png
-Allow: *.PNG
-Allow: */favicon.ico
+
 Sitemap: https://plc-pro100.ru/sitemap
