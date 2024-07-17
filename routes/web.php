@@ -9,6 +9,7 @@ use App\Http\Controllers\mailController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SellerCatalogController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\ThumbnailController;
 use Illuminate\Support\Facades\Route;
 
@@ -93,3 +94,12 @@ Route::controller(ContactUsFormController::class)->group(function () {
 
 //Домой
 Route::get('/', HomeController::class)->name("home");
+
+
+//SITEMAP
+Route::controller(SitemapController::class)->group(function () {
+    Route::get('/sitemap', 'index');
+    Route::get('/sitemap/products', 'products');
+    Route::get('/sitemap/categories', 'categories');
+    Route::get('/sitemap/brands', 'brands');
+});
