@@ -14,5 +14,5 @@
             {{--            <a href="#" class="social-link">twitter</a>--}}
         </div>
     </div>
-    <p class="footer-credit">© 2023 PLC_Pro-100</p>
+    <p class="footer-credit">© 2024 PLC_Pro-100</p>
 </footer>
