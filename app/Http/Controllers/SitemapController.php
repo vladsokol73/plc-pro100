@@ -12,12 +12,10 @@ class SitemapController extends Controller
     {
         $product = Product::query()->orderBy('updated_at', 'desc')->first();
         $category = Category::query()->orderBy('updated_at', 'desc')->first();
-        $brand = Brand::query()->orderBy('updated_at', 'desc')->first();
 
         return response()->view('sitemap.index', [
             'product' => $product,
-            'category' => $category,
-            'brand' => $brand,
+            'category' => $category
         ])->header('Content-Type', 'text/xml');
     }
 
@@ -34,14 +32,6 @@ class SitemapController extends Controller
         $categories = Category::query()->orderBy('updated_at', 'desc')->get();
         return response()->view('sitemap.categories', [
             'categories' => $categories,
-        ])->header('Content-Type', 'text/xml');
-    }
-
-    public function brands(): Response
-    {
-        $brands = Brand::query()->orderBy('updated_at', 'desc')->get();
-        return response()->view('sitemap.brands', [
-            'brands' => $brands,
         ])->header('Content-Type', 'text/xml');
     }
 }

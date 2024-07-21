@@ -101,5 +101,4 @@ Route::controller(SitemapController::class)->group(function () {
     Route::get('/sitemap', 'index');
     Route::get('/sitemap/products', 'products');
     Route::get('/sitemap/categories', 'categories');
-    Route::get('/sitemap/brands', 'brands');
 });
