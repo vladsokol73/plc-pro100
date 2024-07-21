@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     @foreach ($categories as $category)
         <url>
-            <loc>{{ route('category', $category->slug) }}</loc>
+            <loc>{{url("/")}}{{"/catalog/"}}{{ $category->slug }}</loc>
             <lastmod>{{ $category->updated_at->toAtomString() }}</lastmod>
             <changefreq>monthly</changefreq>
             <priority>0.8</priority>

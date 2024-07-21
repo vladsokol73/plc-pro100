@@ -17,7 +17,7 @@
             </div>
 
             <div class="details">
-                <h2 class="product-brand">{{ $product->title }}</h2>
+                <h1 class="product-brand">{{ $product->title }}</h1>
                 <p class="product-short-des">{{ $product->description }}</p>
                 <p class="product-sub-heading">Спецификация</p>
                 <p>Тип: @foreach($product->categories as $category)
