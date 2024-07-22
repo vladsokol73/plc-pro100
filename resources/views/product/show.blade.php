@@ -1,7 +1,7 @@
 @extends("layouts.app")
 
 @section("title")
-    {{ $product->title }}, {{ $product->article }}, {{ $product->brand->title }} | купить в розницу и оптом
+    {{ $product->title }} {{ $product->article }} {{ $product->brand->title }} купить в розницу и оптом по низкой цене - plc-pro100
 @endsection
 <head>
     <meta name="description" content="{{ $product->brand->title }}, {{ $product->title }}, {{ $product->article }}, {{ $product->description }}">
@@ -28,7 +28,7 @@
                     <p><a href="{{ $product->filePath() }}">Документация: </a></p>
                 @endif
                 <div class="price-btn">
-                    <span class="product-price">Цена по запросу</span>
+                    <span class="product-price">{{ $product->price }}</span>
                     {{--            <span class="product-actual-price">$200</span>--}}
                     {{--            <span class="product-discount">( 50% off )</span>--}}
 
