@@ -50,7 +50,7 @@
 {{--                        <option value="3">3</option>--}}
 {{--                    </select>--}}
 {{--                    </p>--}}
-{{--                    <span class="product-price">{{ $product->price}} &#8381; </span>--}}
+                    <span class="product-price">{{ $product->price}} &#8381; </span>
                     <form action="{{ route('basketRemove', ['id' => $product->id]) }}"
                           method="post" class="basket-remove">
                         @csrf
@@ -61,12 +61,12 @@
             </div>
         @endforeach
         <div class="bag-total">
-{{--            <div class="delivery">--}}
-{{--                <p class="small">Доставка: не входит в стоимость<br>--}}
-{{--            </div>--}}
-{{--            <div class="total">--}}
-{{--                <h3>Итого: {{ $basketCost }} &#8381;</h3>--}}
-{{--            </div>--}}
+            <div class="delivery">
+                <p class="small">Доставка: не входит в стоимость<br>
+            </div>
+            <div class="total">
+                <h3>Итого: {{ $basketCost }} &#8381;</h3>
+            </div>
 
             @auth()
                 <button onclick="window.location='{{ route('checkout') }}'" class="btn-go-checkout">

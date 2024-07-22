@@ -5,8 +5,8 @@
     <p class="info">Телефон <a href="tel:+79297949431">+7(929)794-94-31</a></p>
     <div class="footer-social-container">
         <div class="left">
-            <a href="#" class="social-link">Политика конфиденциальности</a>
-            <a href="#" class="social-link">Согласие на обработку персональных данных</a>
+            <a href="{{ route('police') }}" class="social-link">Политика конфиденциальности</a>
+            <a href="{{ route('agreement') }}" class="social-link">Согласие на обработку персональных данных</a>
         </div>
         <div>
             {{--            <a href="#" class="social-link">instagram</a>--}}

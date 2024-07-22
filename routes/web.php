@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BasketController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\ContactUsFormController;
+use App\Http\Controllers\FooterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\mailController;
 use App\Http\Controllers\ProductController;
@@ -101,4 +102,9 @@ Route::controller(SitemapController::class)->group(function () {
     Route::get('/sitemap', 'index');
     Route::get('/sitemap/products', 'products');
     Route::get('/sitemap/categories', 'categories');
+});
+
+Route::controller(FooterController::class)->group(function () {
+    Route::get('/police', 'police')->name('police');
+    Route::get('/agreement', 'agreement')->name('agreement');
 });
