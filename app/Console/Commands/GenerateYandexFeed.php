@@ -72,6 +72,13 @@ class GenerateYandexFeed extends Command
         $products = Product::all();
 
         foreach ($products as $product) {
+            $categoryId = 'null';
+            foreach ($product->categories as $category) {
+                if ($category->parent_id == null) {
+                    $categoryId = $category->id;
+                }
+            }
+
 
             // Получаем  URL товара
 
@@ -84,7 +91,7 @@ class GenerateYandexFeed extends Command
             $offer->addChild('url', $url);
             $offer->addChild('price', $product->price);
             $offer->addChild('currencyId', 'RUR');
-            $offer->addChild('categoryId', $product->category_id);
+            $offer->addChild('categoryId', $categoryId);
             $offer->addChild('picture', $this->SITE_URL . str_replace('/storage/public/images/products', 'storage/images/products/resize/345x320', $product->thumbnail));
             $offer->addChild('name', $product->title);
             $offer->addChild('model', $product->article);

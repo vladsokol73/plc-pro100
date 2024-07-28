@@ -10,15 +10,3 @@
         <lastmod>{{ $category->updated_at->toAtomString() }}</lastmod>
     </sitemap>
 </sitemapindex>
-
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url>
-    <loc>https://plc-pro100.ru</loc>
-</url>
-<url>
-    <loc>https://plc-pro100.ru/catalog</loc>
-</url>
-<url>
-    <loc>https://plc-pro100.ru/brands</loc>
-</url>
-</urlset>
