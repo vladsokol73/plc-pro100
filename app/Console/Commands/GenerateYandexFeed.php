@@ -74,7 +74,7 @@ class GenerateYandexFeed extends Command
         foreach ($products as $product) {
             $categoryId = 'null';
             foreach ($product->categories as $category) {
-                if ($category->parent_id == null) {
+                if ($category->parent_id != null) {
                     $categoryId = $category->id;
                 }
             }
