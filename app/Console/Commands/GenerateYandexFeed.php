@@ -97,7 +97,8 @@ class GenerateYandexFeed extends Command
             $offer->addChild('model', $product->article);
             $offer->addChild('vendor', $this->SITE_NAME);
             $offer->addChild('vendorCode', 1);
-            $offer->addChild('description', $product->description);
+            $description = htmlspecialchars($product->description);
+            $offer->addChild('description', $description);
         }
 
         // Save the XML to a file

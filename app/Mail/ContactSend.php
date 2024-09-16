@@ -38,7 +38,7 @@ class ContactSend extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'contact-email',
+            markdown: 'mail.contact-email',
             with: [
                 'contactNum' => $this->contact->id,
                 'contactName' => $this->contact->name,
