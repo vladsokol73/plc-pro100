@@ -1,5 +1,5 @@
 <div>
-    <h1>Обратная связь номер: {{ $oneClickNum }}</h1>
+    <h1>Заказ в 1 клик №{{ $oneClickNum }}</h1>
     <h1>Создана: {{ $oneClickDate }}</h1>
     <div>
         <h2>Имя: {{ $oneClickName }}</h2>
