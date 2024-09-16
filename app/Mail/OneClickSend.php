@@ -2,16 +2,15 @@
 
 namespace App\Mail;
 
-use App\Models\Contact;
+use App\Models\Oneclick;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
-use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class ContactSend extends Mailable
+class OneClickSend extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -19,7 +18,7 @@ class ContactSend extends Mailable
      * Create a new message instance.
      */
     public function __construct(
-        protected Contact $contact,
+        protected Oneclick $oneclick,
     ){}
 
     /**
@@ -28,7 +27,7 @@ class ContactSend extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Обратная вязь',
+            subject: 'One Click Send',
         );
     }
 
@@ -38,14 +37,14 @@ class ContactSend extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'mail.contact-email',
+            markdown: 'mail.oneclick-email',
             with: [
-                'contactNum' => $this->contact->id,
-                'contactName' => $this->contact->name,
-                'contactMail' => $this->contact->email,
-                'contactPhone' => $this->contact->phone,
-                'contactMessage' => $this->contact->message,
-                'contactDate' => $this->contact->created_at,
+                'oneClickNum' => $this->oneclick->id,
+                'oneClickName' => $this->oneclick->name,
+                'oneClickPhone' => $this->oneclick->phone,
+                'oneClickMessage' => $this->oneclick->message,
+                'oneClickProduct' => $this->oneclick->product_name,
+                'oneClickDate' => $this->oneclick->created_at,
             ],
         );
     }

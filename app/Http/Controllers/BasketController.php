@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderSend;
 use App\Models\Basket;
 use App\Models\Category;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Mail;
 
 class BasketController extends Controller
 {
@@ -60,7 +62,7 @@ class BasketController extends Controller
         }
 
         // выполняем редирект обратно на страницу, где была нажата кнопка «В корзину»
-        return redirect()->route('catalog')->withCookie(cookie('basket_id', $basket_id, 525600));
+        return redirect()->back()->withCookie(cookie('basket_id', $basket_id, 525600));
     }
 
     //удаление из корзины
@@ -95,6 +97,7 @@ class BasketController extends Controller
                 'price' => $product->price,
             ]);
         }
+        Mail::to("Kirill18i.93@mail.ru")->queue(new OrderSend($order));
         // уничтожаем корзину
         Cookie::queue(Cookie::forget('basket_id'));
         $basket->delete();

@@ -90,8 +90,7 @@
         <navigation>
             <menu>
                 <menuitem id="categories">
-                    <button class='glowing-btn'><span class='glowing-txt'>К<span
-                                class='faulty-letter'>А</span>ТЕГОРИИ</span></button>
+                    <button class='glowing-btn'><span class='glowing-txt'>КАТЕГОРИИ</span></button>
                     <menu>
                         @foreach($categories as $category)
                             @if($category->parent_id == null)

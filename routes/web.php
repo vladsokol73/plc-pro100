@@ -7,6 +7,7 @@ use App\Http\Controllers\ContactUsFormController;
 use App\Http\Controllers\FooterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\mailController;
+use App\Http\Controllers\OneClickController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SellerCatalogController;
@@ -104,7 +105,13 @@ Route::controller(SitemapController::class)->group(function () {
     Route::get('/sitemap/categories', 'categories');
 });
 
+//ФУТЕР
 Route::controller(FooterController::class)->group(function () {
     Route::get('/police', 'police')->name('police');
     Route::get('/agreement', 'agreement')->name('agreement');
+});
+
+//OneClick
+Route::controller(OneClickController::class)->group(function () {
+    Route::post('/oneclick-save/{product_name}', 'SubmitForm')->name('oneclick-save');
 });

@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Models\Contact;
+use App\Models\Order;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -11,7 +11,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class ContactSend extends Mailable
+class OrderSend extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -19,7 +19,7 @@ class ContactSend extends Mailable
      * Create a new message instance.
      */
     public function __construct(
-        protected Contact $contact,
+        protected Order $order,
     ){}
 
     /**
@@ -28,7 +28,7 @@ class ContactSend extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Обратная вязь',
+            subject: 'Заказ',
         );
     }
 
@@ -38,14 +38,15 @@ class ContactSend extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'mail.contact-email',
+            markdown: 'mail.order-email',
             with: [
-                'contactNum' => $this->contact->id,
-                'contactName' => $this->contact->name,
-                'contactMail' => $this->contact->email,
-                'contactPhone' => $this->contact->phone,
-                'contactMessage' => $this->contact->message,
-                'contactDate' => $this->contact->created_at,
+                'orderNum' => $this->order->id,
+                'orderName' => $this->order->name,
+                'orderMail' => $this->order->email,
+                'orderPhone' => $this->order->phone,
+                'orderAddress' => $this->order->address,
+                'orderMessage' => $this->order->comment,
+                'orderDate' => $this->order->created_at,
             ],
         );
     }
