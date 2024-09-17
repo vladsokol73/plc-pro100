@@ -1,11 +1,14 @@
 @extends("layouts.card")
 
 @section("title")
-    {{ $product->title }} - купить по самой низкой цене с доставкой по россии - plc-pro100
+    {{ $product->title }} {{ $product->article }} - купить по самой низкой цене с доставкой по россии - plc-pro100
 @endsection
 <head>
     <meta name="description"
           content="купить {{ $product->title }} от производителя {{ $product->brand->title }}! {{ $product->description }}. Низкая цена по России, быстрая доставка и лучшее качество 8 (929) 794-94-31">
+    @foreach($product->categories as $category)
+        <meta name="keywords" content="{{ $category->title }}">
+    @endforeach
     <meta name="keywords" content="{{ $product->brand->title }}, {{ $product->title }}, {{ $product->article }}">
 </head>
 
@@ -62,8 +65,9 @@
 <span id=breadcrumbs_items>
 <a href="{{ route('home') }}">Главная</a> › <a href="{{ route('catalog') }}">Каталог</a>
     @foreach($product->categories as $category)
-        › <a href="{{route('catalog', $category)}}">{{ $category->title}}</a>
-    @endforeach› <span class=bc__item>{{ $product->title }}</span> </span>
+        <a href="{{route('catalog', $category)}}">{{ $category->title}}</a>
+    @endforeach
+    <span class=bc__item>{{ $product->title }}</span> </span>
         </div>
 
         <div id=content_main class=content_main>
@@ -141,11 +145,13 @@
 </span>
                                 </div>
                                 <div class="ordering-buttons not-print">
-                                    <form method="post" id="basket_add" action="{{ route('basketAdd', ['id' => $product->id]) }}">
+                                    <form method="post" id="basket_add"
+                                          action="{{ route('basketAdd', ['id' => $product->id]) }}">
                                         @csrf
                                     </form>
                                     <button class="button button_red button_big add2cart"
-                                            data-widebutton=true type=submit form="basket_add"><span>Добавить в корзину</span></button>
+                                            data-widebutton=true type=submit form="basket_add">
+                                        <span>Добавить в корзину</span></button>
 
                                     <button id="item_oneclick" class="button button_big button_light oneclick"
                                             data-id=qty_8033904209>Купить в 1 клик
@@ -251,9 +257,10 @@
     </div>
 
 
-{{--    Всплывающее окно--}}
+    {{--    Всплывающее окно--}}
     <div id="popup" class="fancybox-overlay fancybox-overlay-fixed" style=width:auto;height:auto;>
-        <div class="fancybox-wrap fancybox-desktop fancybox-type-ajax fancybox-strict fancybox-opened" tabindex=-1 style=width:640px;height:auto;position:absolute;top:198px;left:612px;opacity:1;overflow:visible>
+        <div class="fancybox-wrap fancybox-desktop fancybox-type-ajax fancybox-strict fancybox-opened" tabindex=-1
+             style=width:640px;height:auto;position:absolute;top:198px;left:612px;opacity:1;overflow:visible>
             <div class=fancybox-skin style=padding:30px;width:auto;height:auto>
                 <div class=fancybox-outer>
                     <div id="popup_box" class=fancybox-inner style=overflow:auto;width:580px;height:auto>
@@ -263,32 +270,54 @@
                                 <span>Пожалуйста, заполните краткую контактную информацию.</span><br>
                                 <span>Получив заказ, наши сотрудники свяжутся с Вами.</span>
                             </p>
-                            <form class="form form__big w7em" action="{{ route('oneclick-save', ['product_name' => $product->title]) }}" style="margin-top: 5%" method=post id=oneclick_form>
+                            <form class="form form__big w7em"
+                                  action="{{ route('oneclick-save', ['product_name' => $product->title]) }}"
+                                  style="margin-top: 5%" method=post id=oneclick_form>
                                 @csrf
                                 <dl class="form__row clear">
                                     <dt class="form__label">Ваш телефон</dt>
-                                    <dd class=form__field><input name=phone type=text value placeholder class="input input_medium required servercheck" maxlength=15></dd>
+                                    <dd class=form__field><input name=phone type=text value placeholder
+                                                                 class="input input_medium required servercheck"
+                                                                 maxlength=15></dd>
                                 </dl>
                                 <dl class="form__row clear">
                                     <dt class=form__label>Имя</dt>
-                                    <dd class=form__field><input name=name type=text value placeholder class="input input_big" minlength="2" maxlength=25></dd>
+                                    <dd class=form__field><input name=name type=text value placeholder
+                                                                 class="input input_big" minlength="2" maxlength=25>
+                                    </dd>
                                 </dl>
                                 <dl class="form__row clear">
                                     <dt class=form__label>Комментарий</dt>
-                                    <dd class=form__field><textarea id=notes maxlength="255" name=message class="input input_textarea" value></textarea></dd>
+                                    <dd class=form__field><textarea id=notes maxlength="255" name=message
+                                                                    class="input input_textarea" value></textarea></dd>
                                 </dl>
-                                <dl class="form__row clear required_one" data-error-msg="Требуется подтверждение согласия">
+                                <dl class="form__row clear required_one"
+                                    data-error-msg="Требуется подтверждение согласия">
                                     <dt class=form__label></dt>
-                                    <dd class=form__field><div class="like-input like-input-w"><input id=privacy class="radio unselectable chi-input chi-checkbox" name=privacy type=checkbox required value=on> <label for=privacy><span>я принимаю условия <a href="{{ route('police') }}" class="" target=_blank>политики конфиденциальности</a></span></label></div></dd>
+                                    <dd class=form__field>
+                                        <div class="like-input like-input-w"><input id=privacy
+                                                                                    class="radio unselectable chi-input chi-checkbox"
+                                                                                    name=privacy type=checkbox required
+                                                                                    value=on> <label for=privacy><span>я принимаю условия <a
+                                                        href="{{ route('police') }}" class="" target=_blank>политики конфиденциальности</a></span></label>
+                                        </div>
+                                    </dd>
                                 </dl>
                                 <dl class="form__row clear">
                                     <dt class=form__label></dt>
-                                    <dd class=form__field><button type=submit class="button button_w100">Оформить заказ</button></dd>
+                                    <dd class=form__field>
+                                        <button type=submit class="button button_w100">Оформить заказ</button>
+                                    </dd>
                                 </dl>
                             </form>
                             <p>&nbsp;</p>
-                            <p style=max-width:580px>Вопросы несвязанные с заказом и доставкой товара, вы можете задать по <a href="{{ route('contact') }}" class="link nw">обратной связи</a>.</p>
+                            <p style=max-width:580px>Вопросы несвязанные с заказом и доставкой товара, вы можете задать
+                                по <a href="{{ route('contact') }}" class="link nw">обратной связи</a>.</p>
                         </div>
-                    </div></div><a title=Закрыть class="fancybox-item fancybox-close" id="close_popup"></a></div></div></div>
+                    </div>
+                </div>
+                <a title=Закрыть class="fancybox-item fancybox-close" id="close_popup"></a></div>
+        </div>
+    </div>
     <script src="/js/productcart.js"></script>
 @endsection
