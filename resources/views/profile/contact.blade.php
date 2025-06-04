@@ -14,7 +14,7 @@
 
         <div class="bg-white rounded-lg shadow overflow-hidden">
             <div class="overflow-x-auto">
-                <table class="min-w-full divide-y divide-gray-200">
+                <table class="contacts-table">
                     <thead class="bg-gray-50">
                         <tr>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Дата</th>
@@ -51,7 +51,7 @@
                                     <form method="POST" action="{{ route('removeContact', $contact->id) }}" class="inline-block">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="text-red-600 hover:text-red-900" onclick="return confirm('Вы уверены, что хотите удалить этот контакт?')">
+                                        <button type="submit" class="btn-delete" onclick="return confirm('Вы уверены, что хотите удалить этот контакт?')">
                                             Удалить
                                         </button>
                                     </form>
@@ -70,7 +70,7 @@
             
             <!-- Пагинация -->
             @if($contacts->hasPages())
-                <div class="bg-white px-4 py-3 border-t border-gray-200 sm:px-6">
+                <div class="pagination-container">
                     {{ $contacts->links() }}
                 </div>
             @endif
