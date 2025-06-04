@@ -34,11 +34,11 @@
 
                         <div class="form-group mb-3">
                             <label for="phone" class="form-label">Телефон</label>
-                            <input type="text" 
-                                   class="form-control @error('phone') is-invalid @enderror" 
-                                   id="phone" 
-                                   name="phone" 
-                                   value="{{ old('phone', $contactInfo->phone ?? '') }}" 
+                            <input type="text"
+                                   class="form-control @error('phone') is-invalid @enderror"
+                                   id="phone"
+                                   name="phone"
+                                   value="{{ old('phone', $contactInfo->phone ?? '') }}"
                                    placeholder="+7 (XXX) XXX-XX-XX">
                             @error('phone')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -47,11 +47,11 @@
 
                         <div class="form-group mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" 
-                                   class="form-control @error('email') is-invalid @enderror" 
-                                   id="email" 
-                                   name="email" 
-                                   value="{{ old('email', $contactInfo->email ?? '') }}" 
+                            <input type="email"
+                                   class="form-control @error('email') is-invalid @enderror"
+                                   id="email"
+                                   name="email"
+                                   value="{{ old('email', $contactInfo->email ?? '') }}"
                                    placeholder="example@example.com">
                             @error('email')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -59,10 +59,10 @@
                         </div>
 
                         <div class="form-check mb-4">
-                            <input class="form-check-input" 
-                                   type="checkbox" 
-                                   id="is_active" 
-                                   name="is_active" 
+                            <input class="form-check-input"
+                                   type="checkbox"
+                                   id="is_active"
+                                   name="is_active"
                                    value="1"
                                    @if(isset($contactInfo) && $contactInfo->is_active) checked @endif>
                             <label class="form-check-label" for="is_active">
@@ -71,7 +71,7 @@
                         </div>
 
                         <div class="d-flex justify-content-between">
-                            <a href="{{ route('admin.dashboard') }}" class="btn btn-secondary">Назад</a>
+                            <a href="{{ route('sellerCatalog') }}" class="btn btn-secondary">Назад</a>
                             <button type="submit" class="btn btn-primary">Сохранить</button>
                         </div>
                     </form>
