@@ -70,7 +70,7 @@ class ProfileController extends Controller
             ->orderBy('title')
             ->get();
 
-        $contacts = Contact::query()->get();
+        $contacts = Contact::query()->paginate(10);
 
         return view('profile.contact', ['contacts' => $contacts, 'categories' => $categories]);
     }
