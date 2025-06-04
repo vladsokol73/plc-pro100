@@ -63,7 +63,7 @@
                                    type="checkbox"
                                    id="is_active"
                                    name="is_active"
-                                   value="true"
+                                   value="1"
                                    @if(isset($contactInfo) && $contactInfo->is_active) checked @endif>
                             <label class="form-check-label" for="is_active">
                                 Активно
