@@ -6,6 +6,8 @@ use App\Http\Requests\LoginFormRequest;
 use App\Http\Requests\RegisterFormRequest;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Contact;
+use App\Models\ContactInfo;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -19,7 +21,9 @@ class AuthController extends Controller
             ->orderBy('title')
             ->get();
 
-        return view("auth.register", ['categories' => $categories]);
+        $contact = ContactInfo::query()->first();
+
+        return view("auth.register", ['categories' => $categories, 'contact' => $contact]);
     }
 
     public function login() {
@@ -29,7 +33,9 @@ class AuthController extends Controller
             ->orderBy('title')
             ->get();
 
-        return view("auth.login", ['categories' => $categories]);
+        $contact = ContactInfo::query()->first();
+
+        return view("auth.login", ['categories' => $categories, 'contact' => $contact]);
     }
 
     public function loginSubmit(LoginFormRequest $request): RedirectResponse

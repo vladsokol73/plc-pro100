@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\ContactSend;
 use App\Models\Category;
 use App\Models\Contact;
+use App\Models\ContactInfo;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
@@ -21,7 +22,9 @@ class ContactUsFormController extends Controller
             ->orderBy('title')
             ->get();
 
-        return view("contact", ['categories' => $categories]);
+        $contact = ContactInfo::query()->first();
+
+        return view("contact", ['categories' => $categories, 'contact' => $contact]);
     }
 
     // Store Contact Form data
@@ -35,7 +38,7 @@ class ContactUsFormController extends Controller
             'message' => 'required'
         ]);
         //  Store data in database
-        $contact = Contact::query()->create($request->all());
+        $contact = ContactInfo::query()->create($request->all());
         Mail::to("Kirill18i.93@mail.ru")->queue(new ContactSend($contact));
         return redirect()->route('catalog')->with('Успешно', 'Мы свяжемся с вами в ближайшее время.');
     }

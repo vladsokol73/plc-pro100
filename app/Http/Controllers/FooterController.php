@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Contact;
+use App\Models\ContactInfo;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
@@ -18,7 +20,9 @@ class FooterController extends Controller
             ->orderBy('title')
             ->get();
 
-        return view("footer.police", ['categories' => $categories]);
+        $contact = ContactInfo::query()->first();
+
+        return view("footer.police", ['categories' => $categories, 'contact' => $contact]);
     }
 
     public function agreement()
@@ -29,6 +33,8 @@ class FooterController extends Controller
             ->orderBy('title')
             ->get();
 
-        return view("footer.agreement", ['categories' => $categories]);
+        $contact = ContactInfo::query()->first();
+
+        return view("footer.agreement", ['categories' => $categories, 'contact' => $contact]);
     }
 }

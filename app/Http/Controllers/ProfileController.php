@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Contact;
+use App\Models\ContactInfo;
 use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -18,11 +19,13 @@ class ProfileController extends Controller
             ->has('products')
             ->get();
 
+        $contact = ContactInfo::query()->first();
+
         $user_id = auth()->check() ? auth()->user()->id : null;
         $orders = User::query()
             ->findOrFail($user_id)
             ->orders;
-        return view('profile.user', ['orders' => $orders, 'categories' => $categories]);
+        return view('profile.user', ['orders' => $orders, 'categories' => $categories, 'contact' => $contact]);
     }
 
     //деталка заказа
@@ -34,10 +37,12 @@ class ProfileController extends Controller
             ->orderBy('title')
             ->get();
 
+        $contact = ContactInfo::query()->first();
+
         if (auth()->check()) {
             $user_id = auth()->user()->id;
             if ($user_id == $order->user_id or $user_id == 1) {
-                return view('profile.order', ['order' => $order, 'categories' => $categories]);
+                return view('profile.order', ['order' => $order, 'categories' => $categories, 'contact' => $contact]);
             } else {
                 abort(404);
             }
@@ -55,10 +60,12 @@ class ProfileController extends Controller
             ->orderBy('title')
             ->get();
 
+        $contact = ContactInfo::query()->first();
+
         $user_id = auth()->check() ? auth()->user()->id : null;
         $orders = Order::query()->get();
 
-        return view('profile.seller', ['orders' => $orders, 'categories' => $categories]);
+        return view('profile.seller', ['orders' => $orders, 'categories' => $categories, 'contact' => $contact]);
     }
 
     //обратная связь
@@ -70,9 +77,11 @@ class ProfileController extends Controller
             ->orderBy('title')
             ->get();
 
+        $contact = ContactInfo::query()->first();
+
         $contacts = Contact::query()->paginate(10);
 
-        return view('profile.contact', ['contacts' => $contacts, 'categories' => $categories]);
+        return view('profile.contact', ['contacts' => $contacts, 'categories' => $categories, 'contact' => $contact]);
     }
 
     public function removeContact($id)
@@ -82,6 +91,9 @@ class ProfileController extends Controller
             ->has('products')
             ->orderBy('title')
             ->get();
+
+        $contact = ContactInfo::query()->first();
+
         if (auth()->check()) {
             if (auth()->user()->id == 1) {
                 Contact::query()->findOrFail($id)->delete();
@@ -90,7 +102,7 @@ class ProfileController extends Controller
                 abort(403);
             }
         } else {
-            return view('auth.login', ['categories' => $categories]);
+            return view('auth.login', ['categories' => $categories, 'contact' => $contact]);
         }
     }
 }

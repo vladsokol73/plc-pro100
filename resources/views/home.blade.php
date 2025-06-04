@@ -43,8 +43,10 @@
                 компоненты для его ремонта в России.
                 Наша компания помогает решить проблему в максимально короткие сроки.</p>
             <p>Цены на наши товары вы всегда можете уточнить связавшись с нами<br/>
-                по почте burdin100@mail.ru или burdin100@outlook.com<br/>
-                по номеру +7(929)794-94-31</p>
+                @if($contact->is_active)
+                по почте {{ $contact->email }}<br/>
+                по номеру {{ $contact->phone }}</p>
+                @endif
             <button class="button-write-us" onclick='location.href = "{{ route('contact') }}";'>Написать нам</button>
         </div>
     </section>

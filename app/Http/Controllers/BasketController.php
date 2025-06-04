@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Mail\OrderSend;
 use App\Models\Basket;
 use App\Models\Category;
+use App\Models\Contact;
+use App\Models\ContactInfo;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
@@ -20,15 +22,17 @@ class BasketController extends Controller
             ->orderBy('title')
             ->get();
 
+        $contact = ContactInfo::query()->first();
+
         $basket_id = $request->cookie('basket_id');
         if (empty($basket_id)) {
             $basket = Basket::query()->create();
             $basket_id = $basket->id;
             $products = Basket::query()->findOrFail($basket_id)->products;
-            return view('basket.index', ['products' => $products, 'categories' => $categories]);
+            return view('basket.index', ['products' => $products, 'categories' => $categories, 'contact' => $contact]);
         } else {
             $products = Basket::query()->findOrFail($basket_id)->products;
-            return view('basket.index', ['products' => $products, 'categories' => $categories]);
+            return view('basket.index', ['products' => $products, 'categories' => $categories, 'contact' => $contact]);
         }
     }
 
@@ -40,7 +44,9 @@ class BasketController extends Controller
             ->orderBy('title')
             ->get();
 
-        return view('basket.checkout', ['categories' => $categories]);
+        $contact = ContactInfo::query()->first();
+
+        return view('basket.checkout', ['categories' => $categories, 'contact' => $contact]);
     }
 
     //Добавление в корзину
@@ -115,10 +121,11 @@ class BasketController extends Controller
                 ->has('products')
                 ->orderBy('title')
                 ->get();
+            $contact = ContactInfo::query()->first();
             // сюда покупатель попадает сразу после успешного оформления заказа
             $order_id = $request->session()->pull('order_id');
             $order = Order::query()->findOrFail($order_id);
-            return view('basket.success', ['order' => $order, 'categories' => $categories]);
+            return view('basket.success', ['order' => $order, 'categories' => $categories, 'contact' => $contact]);
         } else {
             // если покупатель попал сюда случайно, не после оформления заказа, ему здесь делать нечего — отправляем на страницу корзины
             return redirect()->route('basket');

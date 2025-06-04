@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Contact;
 use App\Models\Product;
 use App\Models\ContactInfo;
 use Illuminate\Contracts\View\Factory;
@@ -23,9 +24,11 @@ class SellerCatalogController extends Controller
             ->orderBy('title')
             ->get();
 
+        $contact = ContactInfo::query()->first();
+
         if (auth()->check()) {
             if (auth()->user()->id == 1) {
-                return view('catalog.seller-catalog', ['categories' => $categories]);
+                return view('catalog.seller-catalog', ['categories' => $categories, 'contact' => $contact]);
             } else {
                 abort(403);
             }
@@ -41,10 +44,12 @@ class SellerCatalogController extends Controller
             ->orderBy('title')
             ->get();
 
+        $contact = ContactInfo::query()->first();
+
         $brands = Brand::query()
             ->orderBy('title')
             ->get();
-        return view('catalog.brands', ['categories' => $categories, 'brands' => $brands]);
+        return view('catalog.brands', ['categories' => $categories, 'brands' => $brands, 'contact' => $contact]);
     }
 
     public function showCategories()
@@ -54,6 +59,8 @@ class SellerCatalogController extends Controller
             ->orderBy('title')
             ->get();
 
+        $contact = ContactInfo::query()->first();
+
         if (auth()->check()) {
             if (auth()->user()->id == 1) {
                 return view('catalog.categories', ['categories' => $categories]);
@@ -61,7 +68,7 @@ class SellerCatalogController extends Controller
                 abort(403);
             }
         } else {
-            return view('auth.login', ['categories' => $categories]);
+            return view('auth.login', ['categories' => $categories, 'contact' => $contact]);
         }
     }
 
@@ -69,6 +76,9 @@ class SellerCatalogController extends Controller
     public function addProduct(Request $request)
     {
         $categories = Category::query()->orderBy('title')->get();
+
+        $contact = ContactInfo::query()->first();
+
         if (auth()->check()) {
             if (auth()->user()->id == 1) {
                 $brands = Brand::query()->get();
@@ -77,7 +87,7 @@ class SellerCatalogController extends Controller
                 abort(403);
             }
         } else {
-            return view('auth.login', ['categories' => $categories]);
+            return view('auth.login', ['categories' => $categories, 'contact' => $contact]);
         }
     }
 
@@ -85,6 +95,9 @@ class SellerCatalogController extends Controller
     public function saveProduct(Request $request)
     {
         $categories = Category::query()->findOrFail($request->get('category_id'));
+
+        $contact = ContactInfo::query()->first();
+
         if (auth()->check()) {
             if (auth()->user()->id == 1) {
                 $user_id = auth()->check() ? auth()->user()->id : null;
@@ -131,7 +144,7 @@ class SellerCatalogController extends Controller
                 abort(403);
             }
         } else {
-            return view('auth.login', ['categories' => $categories]);
+            return view('auth.login', ['categories' => $categories, 'contact' => $contact]);
         }
     }
 
@@ -143,6 +156,9 @@ class SellerCatalogController extends Controller
             ->has('products')
             ->orderBy('title')
             ->get();
+
+        $contact = ContactInfo::query()->first();
+
         if (auth()->check()) {
             if (auth()->user()->id == 1) {
                 $product = Product::query()->findOrFail($id);
@@ -191,7 +207,7 @@ class SellerCatalogController extends Controller
                 abort(403);
             }
         } else {
-            return view('auth.login', ['categories' => $categories]);
+            return view('auth.login', ['categories' => $categories, 'contact' => $contact]);
         }
     }
 
@@ -202,6 +218,9 @@ class SellerCatalogController extends Controller
             ->select(['id', 'title', 'slug', 'parent_id'])
             ->orderBy('title')
             ->get();
+
+        $contact = ContactInfo::query()->first();
+
         if (auth()->check()) {
             if (auth()->user()->id == 1) {
                 $format = str_replace('/storage/', '', Product::query()->findOrFail($id)->thumbnail);
@@ -212,7 +231,7 @@ class SellerCatalogController extends Controller
                 abort(403);
             }
         } else {
-            return view('auth.login', ['categories' => $categories]);
+            return view('auth.login', ['categories' => $categories, 'contact' => $contact]);
         }
 
     }
@@ -224,6 +243,9 @@ class SellerCatalogController extends Controller
             ->select(['id', 'title', 'slug', 'parent_id'])
             ->orderBy('title')
             ->get();
+
+        $contact = ContactInfo::query()->first();
+
         $brands = Brand::query()->get();
         if (auth()->check()) {
             if (auth()->user()->id == 1) {
@@ -233,7 +255,7 @@ class SellerCatalogController extends Controller
                 abort(403);
             }
         } else {
-            return view('auth.login', ['categories' => $categories]);
+            return view('auth.login', ['categories' => $categories, 'contact' => $contact]);
         }
     }
 
@@ -245,6 +267,9 @@ class SellerCatalogController extends Controller
             ->has('products')
             ->orderBy('title')
             ->get();
+
+        $contact = ContactInfo::query()->first();
+
         if (auth()->check()) {
             if (auth()->user()->id == 1) {
                 return view('brand.add', ['categories' => $categories]);
@@ -252,7 +277,7 @@ class SellerCatalogController extends Controller
                 abort(403);
             }
         } else {
-            return view('auth.login', ['categories' => $categories]);
+            return view('auth.login', ['categories' => $categories, 'contact' => $contact]);
         }
     }
 
@@ -264,6 +289,9 @@ class SellerCatalogController extends Controller
             ->has('products')
             ->orderBy('title')
             ->get();
+
+        $contact = ContactInfo::query()->first();
+
         if (auth()->check()) {
             if (auth()->user()->id == 1) {
                 if ($request->hasFile('thumbnail')) {
@@ -286,7 +314,7 @@ class SellerCatalogController extends Controller
                 abort(403);
             }
         } else {
-            return view('auth.login', ['categories' => $categories]);
+            return view('auth.login', ['categories' => $categories, 'contact' => $contact]);
         }
     }
 
@@ -298,6 +326,9 @@ class SellerCatalogController extends Controller
             ->has('products')
             ->orderBy('title')
             ->get();
+
+        $contact = ContactInfo::query()->first();
+
         if (auth()->check()) {
             if (auth()->user()->id == 1) {
                 $format = str_replace('/storage/', '', Brand::query()->findOrFail($id)->thumbnail);
@@ -308,7 +339,7 @@ class SellerCatalogController extends Controller
                 abort(403);
             }
         } else {
-            return view('auth.login', ['categories' => $categories]);
+            return view('auth.login', ['categories' => $categories, 'contact' => $contact]);
         }
     }
 
@@ -320,6 +351,9 @@ class SellerCatalogController extends Controller
             ->has('products')
             ->orderBy('title')
             ->get();
+
+        $contact = ContactInfo::query()->first();
+
         if (auth()->check()) {
             if (auth()->user()->id == 1) {
                 $brand = Brand::query()->findOrFail($id);
@@ -328,7 +362,7 @@ class SellerCatalogController extends Controller
                 abort(403);
             }
         } else {
-            return view('auth.login', ['categories' => $categories]);
+            return view('auth.login', ['categories' => $categories, 'contact' => $contact]);
         }
     }
 
@@ -340,6 +374,9 @@ class SellerCatalogController extends Controller
             ->has('products')
             ->orderBy('title')
             ->get();
+
+        $contact = ContactInfo::query()->first();
+
         if (auth()->check()) {
             if (auth()->user()->id == 1) {
                 $data = $request->all();
@@ -360,7 +397,7 @@ class SellerCatalogController extends Controller
                 abort(403);
             }
         } else {
-            return view('auth.login', ['categories' => $categories]);
+            return view('auth.login', ['categories' => $categories, 'contact' => $contact]);
         }
     }
 
@@ -372,6 +409,9 @@ class SellerCatalogController extends Controller
             ->where('parent_id', '=', null)
             ->orderBy('title')
             ->get();
+
+        $contact = ContactInfo::query()->first();
+
         if (auth()->check()) {
             if (auth()->user()->id == 1) {
                 return view('category.add', ['categories' => $categories]);
@@ -379,7 +419,7 @@ class SellerCatalogController extends Controller
                 abort(403);
             }
         } else {
-            return view('auth.login', ['categories' => $categories]);
+            return view('auth.login', ['categories' => $categories, 'contact' => $contact]);
         }
     }
 
@@ -391,6 +431,9 @@ class SellerCatalogController extends Controller
             ->where('parent_id', '=', null)
             ->orderBy('title')
             ->get();
+
+        $contact = ContactInfo::query()->first();
+
         if (auth()->check()) {
             if (auth()->user()->id == 1) {
                 $category = Category::query()->create($request->all());
@@ -399,7 +442,7 @@ class SellerCatalogController extends Controller
                 abort(403);
             }
         } else {
-            return view('auth.login', ['categories' => $categories]);
+            return view('auth.login', ['categories' => $categories, 'contact' => $contact]);
         }
     }
 
@@ -411,6 +454,9 @@ class SellerCatalogController extends Controller
             ->where('parent_id', '=', null)
             ->orderBy('title')
             ->get();
+
+        $contact = ContactInfo::query()->first();
+
         if (auth()->check()) {
             if (auth()->user()->id == 1) {
                 Category::query()->findOrFail($id)->delete();
@@ -419,7 +465,7 @@ class SellerCatalogController extends Controller
                 abort(403);
             }
         } else {
-            return view('auth.login', ['categories' => $categories]);
+            return view('auth.login', ['categories' => $categories, 'contact' => $contact]);
         }
     }
 
@@ -432,6 +478,8 @@ class SellerCatalogController extends Controller
             ->orderBy('title')
             ->get();
 
+        $contact = ContactInfo::query()->first();
+
         if (auth()->check()) {
             if (auth()->user()->id == 1) {
                 $category = Category::query()->findOrFail($id);
@@ -440,7 +488,7 @@ class SellerCatalogController extends Controller
                 abort(403);
             }
         } else {
-            return view('auth.login', ['categories' => $categories]);
+            return view('auth.login', ['categories' => $categories, 'contact' => $contact]);
         }
     }
 
@@ -452,6 +500,9 @@ class SellerCatalogController extends Controller
             ->has('products')
             ->orderBy('title')
             ->get();
+
+        $contact = ContactInfo::query()->first();
+
         if (auth()->check()) {
             if (auth()->user()->id == 1) {
                 Category::query()->findOrFail($id)->update($request->all());
@@ -460,7 +511,7 @@ class SellerCatalogController extends Controller
                 abort(403);
             }
         } else {
-            return view('auth.login', ['categories' => $categories]);
+            return view('auth.login', ['categories' => $categories, 'contact' => $contact]);
         }
     }
 
@@ -471,6 +522,8 @@ class SellerCatalogController extends Controller
             ->has('products')
             ->orderBy('title')
             ->get();
+
+        $contact = ContactInfo::query()->first();
 
         if (auth()->check()) {
             if (auth()->user()->id == 1) {
@@ -492,7 +545,7 @@ class SellerCatalogController extends Controller
                 abort(403);
             }
         } else {
-            return view('auth.login', ['categories' => $categories]);
+            return view('auth.login', ['categories' => $categories, 'contact' => $contact]);
         }
     }
 
