@@ -48,7 +48,6 @@
             </div>
             <div class="info container"></div>
         </form>
-        <p class="extra">Вы так же можете связаться с нами: <a href="mailto:Kirill18i.93@mail.ru">Kirill18i.93@mail.ru</a></p>
     </div>
     </body>
 @endsection
