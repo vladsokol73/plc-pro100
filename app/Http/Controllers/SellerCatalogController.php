@@ -502,18 +502,12 @@ class SellerCatalogController extends Controller
             abort(403);
         }
 
-        $validated = $request->validate([
-            'email' => 'required|email|max:255',
-            'phone' => 'required|string|max:255',
-            'is_active' => 'sometimes|boolean'
-        ]);
-
         $contactInfo = ContactInfo::first();
         if (!$contactInfo) {
             $contactInfo = new ContactInfo();
         }
 
-        $contactInfo->fill($validated);
+        $contactInfo->fill($request->all());
         $contactInfo->save();
 
         return redirect()->route('showContactInfo')
