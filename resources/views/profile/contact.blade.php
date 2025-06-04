@@ -15,7 +15,15 @@
         <div class="bg-white rounded-lg shadow overflow-hidden">
             <div class="overflow-x-auto">
                 <table class="contacts-table">
-                    <thead class="bg-gray-50">
+                    <colgroup>
+                        <col style="width: 12%;">
+                        <col style="width: 12%;">
+                        <col style="width: 15%;">
+                        <col style="width: 12%;">
+                        <col style="width: 39%;">
+                        <col style="width: 10%;">
+                    </colgroup>
+                    <thead>
                         <tr>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Дата</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Имя</th>
@@ -52,6 +60,7 @@
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn-delete" onclick="return confirm('Вы уверены, что хотите удалить этот контакт?')">
+                                        <i class="fas fa-trash"></i>
                                             Удалить
                                         </button>
                                     </form>
@@ -70,8 +79,10 @@
             
             <!-- Пагинация -->
             @if($contacts->hasPages())
-                <div class="pagination-container">
-                    {{ $contacts->links() }}
+                <div class="pagination-wrapper">
+                    <div class="pagination">
+                        {{ $contacts->links() }}
+                    </div>
                 </div>
             @endif
         </div>
