@@ -59,6 +59,10 @@
                         </div>
 
                         <div class="form-check mb-4">
+                            <!-- Скрытое поле, которое отправит 0, если чекбокс не отмечен -->
+                            <input type="hidden" name="is_active" value="0">
+
+                            <!-- Сам чекбокс, который перезапишет значение на 1, если отмечен -->
                             <input class="form-check-input"
                                    type="checkbox"
                                    id="is_active"
