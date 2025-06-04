@@ -78,6 +78,9 @@ Route::controller(SellerCatalogController::class)->group(function () {
     Route::post('/remove-brand/{id}', 'removeBrand')->name('removeBrand');
     Route::post('/update-brand/{id}', 'editBrandSubmit')->name('editBrandSubmit');
 
+    Route::get('/contact-info', 'showContactInfo')->name('showContactInfo');
+    Route::put('/contact-info', 'editContactInfo')->name('editContactInfo');
+
     Route::get('/categories', 'showCategories')->name('showCategories');
     Route::get('/category-add', 'addCategory')->name('addCategory');
     Route::get('/edit-category/{id}', 'editCategory')->name('editCategory');

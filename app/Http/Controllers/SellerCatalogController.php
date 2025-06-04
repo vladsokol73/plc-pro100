@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ContactInfo;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
@@ -461,5 +462,61 @@ class SellerCatalogController extends Controller
         } else {
             return view('auth.login', ['categories' => $categories]);
         }
+    }
+
+    public function showContactInfo()
+    {
+        $categories = Category::query()
+            ->select(['id', 'title', 'slug', 'parent_id'])
+            ->has('products')
+            ->orderBy('title')
+            ->get();
+
+        if (auth()->check()) {
+            if (auth()->user()->id == 1) {
+                // Получаем или создаем запись с контактной информацией
+                $contactInfo = ContactInfo::first();
+                if (!$contactInfo) {
+                    $contactInfo = ContactInfo::create([
+                        'email' => '',
+                        'phone' => '',
+                        'is_active' => true
+                    ]);
+                }
+
+                return view('profile.contact-info', [
+                    'categories' => $categories,
+                    'contactInfo' => $contactInfo
+                ]);
+            } else {
+                abort(403);
+            }
+        } else {
+            return view('auth.login', ['categories' => $categories]);
+        }
+    }
+
+    public function editContactInfo(Request $request)
+    {
+        if (!auth()->check() || auth()->user()->id !== 1) {
+            abort(403);
+        }
+
+        $validated = $request->validate([
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:255',
+            'is_active' => 'sometimes|boolean'
+        ]);
+
+        $contactInfo = ContactInfo::first();
+        if (!$contactInfo) {
+            $contactInfo = new ContactInfo();
+        }
+
+        $contactInfo->fill($validated);
+        $contactInfo->save();
+
+        return redirect()->route('showContactInfo')
+            ->with('success', 'Контактная информация успешно обновлена');
     }
 }

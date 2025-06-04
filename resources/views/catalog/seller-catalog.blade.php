@@ -50,6 +50,13 @@
                     class="btn-admin">
                     Обратная связь
                 </button>
+
+                <button
+                    onclick="window.location.href = '{{ route('showContactInfo') }}'"
+                    type="button"
+                    class="btn-admin">
+                    Информация для обратной связи
+                </button>
             </div>
         @endif
     @endauth
