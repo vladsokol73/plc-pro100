@@ -33,7 +33,7 @@ class SellerCatalogController extends Controller
                 abort(403);
             }
         } else {
-            return view('auth.login', ['categories' => $categories]);
+            return view('auth.login', ['categories' => $categories, 'contact' => $contact]);
         }
     }
 
@@ -63,7 +63,7 @@ class SellerCatalogController extends Controller
 
         if (auth()->check()) {
             if (auth()->user()->id == 1) {
-                return view('catalog.categories', ['categories' => $categories]);
+                return view('catalog.categories', ['categories' => $categories, 'contact' => $contact]);
             } else {
                 abort(403);
             }
@@ -82,7 +82,7 @@ class SellerCatalogController extends Controller
         if (auth()->check()) {
             if (auth()->user()->id == 1) {
                 $brands = Brand::query()->get();
-                return view('product.add', ['brands' => $brands, 'categories' => $categories]);
+                return view('product.add', ['brands' => $brands, 'categories' => $categories, 'contact' => $contact]);
             } else {
                 abort(403);
             }
@@ -250,7 +250,7 @@ class SellerCatalogController extends Controller
         if (auth()->check()) {
             if (auth()->user()->id == 1) {
                 $product = Product::query()->findOrFail($id);
-                return view('product.edit', ['product' => $product, 'brands' => $brands, 'categories' => $categories]);
+                return view('product.edit', ['product' => $product, 'brands' => $brands, 'categories' => $categories, 'contact' => $contact]);
             } else {
                 abort(403);
             }
@@ -272,7 +272,7 @@ class SellerCatalogController extends Controller
 
         if (auth()->check()) {
             if (auth()->user()->id == 1) {
-                return view('brand.add', ['categories' => $categories]);
+                return view('brand.add', ['categories' => $categories, 'contact' => $contact]);
             } else {
                 abort(403);
             }
@@ -357,7 +357,7 @@ class SellerCatalogController extends Controller
         if (auth()->check()) {
             if (auth()->user()->id == 1) {
                 $brand = Brand::query()->findOrFail($id);
-                return view('brand.edit', ['brand' => $brand, 'categories' => $categories]);
+                return view('brand.edit', ['brand' => $brand, 'categories' => $categories, 'contact' => $contact]);
             } else {
                 abort(403);
             }
@@ -414,7 +414,7 @@ class SellerCatalogController extends Controller
 
         if (auth()->check()) {
             if (auth()->user()->id == 1) {
-                return view('category.add', ['categories' => $categories]);
+                return view('category.add', ['categories' => $categories, 'contact' => $contact]);
             } else {
                 abort(403);
             }
@@ -483,7 +483,7 @@ class SellerCatalogController extends Controller
         if (auth()->check()) {
             if (auth()->user()->id == 1) {
                 $category = Category::query()->findOrFail($id);
-                return view('category.edit', ['category' => $category, 'categories' => $categories]);
+                return view('category.edit', ['category' => $category, 'categories' => $categories, 'contact' => $contact]);
             } else {
                 abort(403);
             }
@@ -539,7 +539,8 @@ class SellerCatalogController extends Controller
 
                 return view('profile.contact-info', [
                     'categories' => $categories,
-                    'contactInfo' => $contactInfo
+                    'contactInfo' => $contactInfo,
+                    'contact' => $contact
                 ]);
             } else {
                 abort(403);
